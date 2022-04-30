@@ -28,11 +28,11 @@ while [ "$1" != "" ]; do
         	shift
         	QIK_HOME=$1
         	;;
-        -h | --help )           
+        -h | --help )
         	usage
         	exit
         	;;
-        * )                     
+        * )
         	usage
             exit
     esac
@@ -134,6 +134,12 @@ echo 'export CLASSPATH=$QIK_HOME/IndexEngine/lib' >> /users/$USER/.profile
 # Installing Python dependencies.
 pip install -r $QIK_HOME/scripts/deploy_scripts/requirements.txt
 
+# Seting up Clip captioning model
+pip install transformers==4.15.0
+cd $QIK_HOME && pip install git+https://github.com/openai/CLIP.git
+pip install scikit-image==0.17.2
+mkdir $QIK_HOME/QIK_Web/pretrained_models && wget https://mailmissouri-my.sharepoint.com/:u:/g/personal/az2z7_umsystem_edu/EWBfqexNmcdPiG1wUdGm1vUBCf13bR8r_ECU0DFDX14t4A?download=1 -O $QIK_HOME/QIK_Web/pretrained_models/model_wieghts.pt
+
 # Starting up the Embedding web application.
 cd $QIK_HOME/Embeddings
 python app.py &>> Embeddings.log &
@@ -156,4 +162,3 @@ rm -rvf $QIK_HOME/BaseX92.zip
 
 # Executing profile.
 echo '. '$HOME'/.bashrc' >> /users/$USER/.profile
-
