@@ -3,7 +3,7 @@ path.append("util/")
 
 import requests
 import constants
-import caption_generator
+import clipcap_caption_generator
 import json
 import subprocess
 import shlex
@@ -35,10 +35,10 @@ def create_tree_ps(parse_tree):
 
 def explain(query_image_path):
     # Initializing the caption generator model.
-    caption_generator.init()
+    clipcap_caption_generator.init()
 
     # Obtaining the caption for the image.
-    img_caption = caption_generator.get_caption(query_image_path, True)
+    img_caption = clipcap_caption_generator.get_caption(query_image_path)
     print("explain.py :: explain :: image caption :: ", img_caption)
 
     # Handling the fullstops in captions.
