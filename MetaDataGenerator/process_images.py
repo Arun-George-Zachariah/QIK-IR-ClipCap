@@ -12,8 +12,7 @@ from threading import Thread, Lock
 import constants
 from get_coordinates import ImageMetaData
 from nltk.parse.stanford import StanfordDependencyParser
-# import detect_objects
-# import caption_generator
+import detect_objects
 import clipcap_caption_generator
 
 queue = []
@@ -112,56 +111,8 @@ class Process(threading.Thread):
             json_data['lng'] = latlng[1]
 
         # Adding objects detected to the metedata
-        # json_data['objects'] = detect_objects.get_detected_objects(filename)
-
-        # Fetching the captions for the images.
-        # caption_str = caption_generator.get_caption(filename).split("\n")
-
+        json_data['objects'] = detect_objects.get_detected_objects(filename)
         json_data['key'] = constants.IMAGE_URL + os.fsdecode(self.getName())
-        
-        # caption_itr = iter(list(caption_str))
-        # for line in caption_itr:
-        #     if line.startswith("Captions"):
-        #         line = next(caption_itr)
-        #
-        #         if "0)" in line:
-        #             cap0 = re.search(r'\S (.*?) \(', line).group(0).replace(")", "").replace("(", "").strip()
-        #             p0 = line.split("(")[-1].split("p=")[-1].split(")")[0]
-        #             if "." in cap0:
-        #                 json_data['cap1_cap'] = cap0[:-2]
-        #             else:
-        #                 json_data['cap1_cap'] = cap0
-        #             json_data['cap1_p'] = p0
-        #
-        #             # Adding the dependency tree.
-        #             json_data['cap1_dep_tree'] = get_dep_tree(json_data['cap1_cap'])
-        #
-        #             line = next(caption_itr)
-        #
-        #         if "1)" in line:
-        #             cap1 = re.search(r'\S (.*?) \(', line).group(0).replace(")", "").replace("(", "").strip()
-        #             p1 = line.split("(")[-1].split("p=")[-1].split(")")[0]
-        #             if "." in cap1:
-        #                 json_data['cap2_cap'] = cap1[:-2]
-        #             else:
-        #                 json_data['cap2_cap'] = cap1
-        #             json_data['cap2_p'] = p1
-        #
-        #             # Adding the dependency tree.
-        #             json_data['cap2_dep_tree'] = get_dep_tree(json_data['cap2_cap'])
-        #
-        #             line = next(caption_itr)
-        #         if "2)" in line:
-        #             cap2 = re.search(r'\S (.*?) \(', line).group(0).replace(")", "").replace("(", "").strip()
-        #             p2 = line.split("(")[-1].split("p=")[-1].split(")")[0]
-        #             if "." in cap2:
-        #                 json_data['cap3_cap'] = cap2[:-2]
-        #             else:
-        #                 json_data['cap3_cap'] = cap2
-        #             json_data['cap3_p'] = p2
-        #
-        #              # Adding the dependency tree.
-        #             json_data['cap3_dep_tree'] = get_dep_tree(json_data['cap3_cap'])
 
         # Fetching the captions for the images.
         caption_str = clipcap_caption_generator.get_captions(filename)
@@ -180,10 +131,9 @@ class Process(threading.Thread):
 
 if __name__ == "__main__":
     # Loading the object detection model.
-    # detect_objects.init()
+    detect_objects.init()
 
-    # Loading the Show and Tell Model.
-    # caption_generator.init()
+    # Loading the ClipCap Model.
     clipcap_caption_generator.init()
     
     # Starting the producer process

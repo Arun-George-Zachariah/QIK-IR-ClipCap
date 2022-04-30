@@ -1,7 +1,7 @@
 from threading import Thread, Lock
 import os
 import threading
-from util import caption_generator
+from util import clipcap_caption_generator
 import re
 import urllib
 import requests
@@ -91,7 +91,7 @@ class Process(threading.Thread):
         latlng = meta_data.get_lat_lng()
 
         # Fetching the captions for the images.
-        caption_str = caption_generator.get_caption(filename, False).split("\n")
+        caption_str = clipcap_caption_generator.get_caption(filename).split("\n")
 
         # Forming a json data from the captions generated.
         json_data = {}
@@ -158,6 +158,9 @@ class Process(threading.Thread):
 def add_index(img_dir):
     global IMAGE_DIR
     IMAGE_DIR = img_dir
+
+    # Loading the ClipCap Model.
+    clipcap_caption_generator.init()
 
     # Starting the producer process
     Producer().start()
