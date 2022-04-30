@@ -3,7 +3,8 @@ path.append("../APTED/apted")
 path.append("../ML_Models/ObjectDetection")
 path.append("util/")
 
-import caption_generator
+# import caption_generator
+import clipcap_caption_generator
 import constants
 import json
 import requests
@@ -104,10 +105,12 @@ def qik_search(query_image, ranking_func=None, obj_det_enabled=False, pure_objec
         return "Query Image", sortedCaptionRanksDict, None
 
     # Initial Loading of the caption generator model.
-    caption_generator.init()
+    # caption_generator.init()
+    clipcap_caption_generator.init()
 
     # Generating the captions.
-    query = caption_generator.get_caption(query_image, True)
+    # query = caption_generator.get_caption(query_image, True)
+    query = clipcap_caption_generator.get_captions(query_image)
 
     # Handling the fullstops in captions.
     if query[-1] == '.':
@@ -116,7 +119,9 @@ def qik_search(query_image, ranking_func=None, obj_det_enabled=False, pure_objec
 
     # Querying the backend to fetch the list of images and captions.
     cap_req = constants.SOLR_QUERY_URL + query
-    cap_res = json.loads(requests.get(cap_req).text)
+    cap_res = requests.get(cap_req).text
+    if cap_res is not None:
+        cap_res = json.loads(cap_res)
     print("QIK Captions Response :: ", cap_res)
     print("QIK Fetch Execution time :: ", (datetime.datetime.now() - time))
 
@@ -193,15 +198,15 @@ def qik_search(query_image, ranking_func=None, obj_det_enabled=False, pure_objec
             # Formating done for Ranking
             sortedCaptionRanksDict = sorted(captionRanksDict.items(), key=lambda kv: kv[1], reverse=True)
 
-        similar_images = get_similar_images(query)
-        print("qik_search :: qik_search :: similar_images :: ", similar_images)
+        # similar_images = get_similar_images(query)
+        # print("qik_search :: qik_search :: similar_images :: ", similar_images)
 
     # Auditing the QIK execution time.
     print("QIK Execution time :: ", (datetime.datetime.now() - time))
 
     if sortedCaptionRanksDict and fetch_count is not None:
         print("sortedCaptionRanksDict :: ", sortedCaptionRanksDict[:fetch_count])
-        return query, sortedCaptionRanksDict[:fetch_count], similar_images
+        return query, sortedCaptionRanksDict[:fetch_count]
     else:
         print("sortedCaptionRanksDict :: ", sortedCaptionRanksDict)
-        return query, sortedCaptionRanksDict, similar_images
+        return query, sortedCaptionRanksDict
