@@ -3,7 +3,6 @@ path.append("../APTED/apted")
 path.append("../ML_Models/ObjectDetection")
 path.append("util/")
 
-# import caption_generator
 import clipcap_caption_generator
 import constants
 import json
@@ -105,7 +104,6 @@ def qik_search(query_image, ranking_func=None, obj_det_enabled=False, pure_objec
         return "Query Image", sortedCaptionRanksDict, None
 
     # Initial Loading of the caption generator model.
-    # caption_generator.init()
     clipcap_caption_generator.init()
 
     # Generating the captions.

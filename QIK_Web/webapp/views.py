@@ -3,7 +3,7 @@ path.append("../APTED/apted")
 from django.shortcuts import render
 from .forms import TextSearchForm, ImageSearchForm, IndexForm, ExplainForm
 from util import parse_show_tree
-from util import caption_generator
+from util import clipcap_caption_generator
 from util import constants
 from util import index_qik
 from util import explain
@@ -131,7 +131,7 @@ def text_search(request):
 
     else:
     	# Initial loading
-        caption_generator.init()
+        clipcap_caption_generator.init()
 
     form = TextSearchForm();
     return render(request, 'webapp/home.html', {'form':form})
@@ -223,7 +223,7 @@ def image_search(request):
             return render(request, 'webapp/imageResults.html', {'form': form, 'images': sortedCaptionRanksDict, 'imgSrc': query_image_path.replace(constants.QIK_WEBAPP_PATH, constants.TOMCAT_IP_ADDR + constants.IMAGE_DATA_DIR), 'similarImages': similar_images, 'rankingFunc':ranking_func, 'caption':query, 'caption':query, 'kValue':k, 'searchModel':search_model})
 
         else:
-            caption_generator.init()
+            clipcap_caption_generator.init()
 
     form = ImageSearchForm();
     return render(request, 'webapp/imageSearch.html', {'form':form})
@@ -256,7 +256,7 @@ def add_index(request):
         form = IndexForm();
         return render(request, 'webapp/index.html', {'form': form, 'index_alert': True})
     else:
-        caption_generator.init()
+        clipcap_caption_generator.init()
 
     # Returning the index form.
     form = IndexForm();
@@ -315,7 +315,7 @@ def explain_query(request):
         return render(request, 'webapp/explain.html', {'form': form, 'query_image_path': query_image_path.replace(constants.QIK_WEBAPP_PATH, constants.TOMCAT_IP_ADDR + constants.IMAGE_DATA_DIR), 'img_caption': img_caption, 'parse_tree': parse_tree, 'parse_tree_img': parse_tree_img.replace(constants.QIK_WEBAPP_PATH, constants.TOMCAT_IP_ADDR + constants.IMAGE_DATA_DIR), 'xml_representation': xml_representation, 'min_xml_representation': min_xml_representation, 'xpath': xpath, 'optimized_xPath': optimized_xPath, 'query_exec_time': query_exec_time, 'ranking_time': ranking_time.microseconds/1000000, 'qik_exec_time': qik_exec_time.microseconds/1000000, 'similar_exec_time': similar_exec_time*0.001, 'similar_xpath': similar_xpath})
         # return render(request, 'webapp/explain.html', {'form': form, 'query_image_path': query_image_path.replace(constants.QIK_WEBAPP_PATH, constants.TOMCAT_IP_ADDR + constants.IMAGE_DATA_DIR)})
     else:
-        caption_generator.init()
+        clipcap_caption_generator.init()
 
     form = ExplainForm();
     return render(request, 'webapp/explain.html', {'form':form})
