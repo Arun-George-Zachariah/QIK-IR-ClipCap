@@ -91,7 +91,7 @@ class Process(threading.Thread):
         latlng = meta_data.get_lat_lng()
 
         # Fetching the captions for the images.
-        caption_str = clipcap_caption_generator.get_caption(filename).split("\n")
+        caption_str = clipcap_caption_generator.get_captions(filename).split("\n")
 
         # Forming a json data from the captions generated.
         json_data = {}
