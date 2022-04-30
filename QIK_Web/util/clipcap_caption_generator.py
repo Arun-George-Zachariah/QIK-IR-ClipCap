@@ -34,7 +34,7 @@ TA = Union[T, ARRAY]
 D = torch.device
 CPU = torch.device('cpu')
 
-MODEL_PATH = str(Path.home()) + "QIK-IR-ClipCap/QIK_Web/pretrained_models/model_wieghts.pt"
+MODEL_PATH = str(Path.home()) + "/QIK-IR-ClipCap/QIK_Web/pretrained_models/model_wieghts.pt"
 PREFIX_LENGTH = 10
 
 # Global Vairables
