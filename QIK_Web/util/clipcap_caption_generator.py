@@ -33,7 +33,7 @@ TA = Union[T, ARRAY]
 D = torch.device
 CPU = torch.device('cpu')
 
-MODEL_PATH = "/mydata/QIK/QIK_Web/pretrained_models/model_wieghts.pt"
+MODEL_PATH = "../pretrained_models/model_wieghts.pt"
 PREFIX_LENGTH = 10
 
 # Global Vairables
