@@ -4,7 +4,6 @@ path.append("../ML_Models/ObjectDetection")
 
 import constants
 from qik_search import qik_search
-import caption_generator
 import detect_objects
 import datetime
 import argparse
@@ -56,7 +55,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # Initializing the ML Models.
-    caption_generator.init()
     detect_objects.init()
 
     # Initializing a dictionary to hold the results.
