@@ -196,15 +196,15 @@ def qik_search(query_image, ranking_func=None, obj_det_enabled=False, pure_objec
             # Formating done for Ranking
             sortedCaptionRanksDict = sorted(captionRanksDict.items(), key=lambda kv: kv[1], reverse=True)
 
-        # similar_images = get_similar_images(query)
-        # print("qik_search :: qik_search :: similar_images :: ", similar_images)
+        similar_images = get_similar_images(query)
+        print("qik_search :: qik_search :: similar_images :: ", similar_images)
 
     # Auditing the QIK execution time.
     print("QIK Execution time :: ", (datetime.datetime.now() - time))
 
     if sortedCaptionRanksDict and fetch_count is not None:
         print("sortedCaptionRanksDict :: ", sortedCaptionRanksDict[:fetch_count])
-        return query, sortedCaptionRanksDict[:fetch_count]
+        return query, sortedCaptionRanksDict[:fetch_count], similar_images
     else:
         print("sortedCaptionRanksDict :: ", sortedCaptionRanksDict)
-        return query, sortedCaptionRanksDict
+        return query, sortedCaptionRanksDict, similar_images
