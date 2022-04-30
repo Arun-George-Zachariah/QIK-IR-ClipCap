@@ -15,6 +15,7 @@ from transformers import GPT2Tokenizer, GPT2LMHeadModel, AdamW, get_linear_sched
 from tqdm import tqdm, trange
 import skimage.io as io
 import PIL.Image
+from pathlib import Path
 
 DEVICE = "cpu"
 N = type(None)
@@ -33,7 +34,7 @@ TA = Union[T, ARRAY]
 D = torch.device
 CPU = torch.device('cpu')
 
-MODEL_PATH = "../pretrained_models/model_wieghts.pt"
+MODEL_PATH = str(Path.home()) + "QIK-IR-ClipCap/QIK_Web/pretrained_models/model_wieghts.pt"
 PREFIX_LENGTH = 10
 
 # Global Vairables
