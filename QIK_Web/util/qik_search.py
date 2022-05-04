@@ -50,7 +50,7 @@ def get_similar_images(query_image):
 
     return similar_images
 
-def qik_search(query_image, ranking_func=None, obj_det_enabled=False, pure_objects_search=False, fetch_count=None):
+def qik_search(query_image, ranking_func=None, obj_det_enabled=False, pure_objects_search=False, fetch_count=None, is_similar_search_enabled=True):
     obj_res = None
     cap_res = None
     similar_images = None
@@ -196,8 +196,9 @@ def qik_search(query_image, ranking_func=None, obj_det_enabled=False, pure_objec
             # Formating done for Ranking
             sortedCaptionRanksDict = sorted(captionRanksDict.items(), key=lambda kv: kv[1], reverse=True)
 
-        similar_images = get_similar_images(query)
-        print("qik_search :: qik_search :: similar_images :: ", similar_images)
+        if is_similar_search_enabled:
+            similar_images = get_similar_images(query)
+            print("qik_search :: qik_search :: similar_images :: ", similar_images)
 
     # Auditing the QIK execution time.
     print("QIK Execution time :: ", (datetime.datetime.now() - time))

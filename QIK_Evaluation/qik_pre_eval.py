@@ -70,7 +70,7 @@ def retrieve(query_image):
     qik_results = []
 
     # Fetching the candidates from QIK.
-    query, qik_results_dict = qik_search(query_image_path, obj_det_enabled=False, ranking_func='Parse Tree', fetch_count=eval_k + 1)
+    query, qik_results_dict, = qik_search(query_image_path, obj_det_enabled=False, ranking_func='Parse Tree', fetch_count=eval_k + 1, False)
 
     for result in qik_results_dict:
         k, v = result
