@@ -48,17 +48,18 @@ model = None
 def init():
     global is_init, clip_model, preprocess, tokenizer, model
 
-    clip_model, preprocess = clip.load("ViT-B/32", device=DEVICE, jit=False)
-    tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+    if not is_init:
+        clip_model, preprocess = clip.load("ViT-B/32", device=DEVICE, jit=False)
+        tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
 
-    model = ClipCaptionModel(PREFIX_LENGTH)
+        model = ClipCaptionModel(PREFIX_LENGTH)
 
-    model.load_state_dict(torch.load(MODEL_PATH, map_location=CPU))
+        model.load_state_dict(torch.load(MODEL_PATH, map_location=CPU))
 
-    model = model.eval()
-    model = model.to(DEVICE)
+        model = model.eval()
+        model = model.to(DEVICE)
 
-    is_init = True
+        is_init = True
 
 
 class MLP(nn.Module):
