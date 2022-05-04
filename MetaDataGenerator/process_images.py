@@ -9,11 +9,10 @@ import urllib
 import requests
 import time
 from threading import Thread, Lock
-import constants
+import constants, clipcap_caption_generator
 from get_coordinates import ImageMetaData
 from nltk.parse.stanford import StanfordDependencyParser
 import detect_objects
-import clipcap_caption_generator
 
 queue = []
 lock = Lock()
