@@ -4,7 +4,6 @@ path.append("../ML_Models/ObjectDetection")
 
 import constants
 from qik_search import qik_search
-# import caption_generator
 import datetime
 from threading import Thread, Lock
 import threading
@@ -92,7 +91,7 @@ def retrieve(query_image):
     ret_dict["qik_results"] = qik_results
 
     # Writing the output to a file.
-    with open("data/QIK_120k_Results_Dict.txt", 'a+') as f:
+    with open("data/QIK_Results_Dict.txt", 'a+') as f:
         f.write(query_image + ":: " + str(ret_dict) + "\n")
 
     print("qik_pre_eval :: retrieve :: ret_dict :: ", str(ret_dict))
@@ -111,7 +110,7 @@ if __name__ == '__main__':
     Consumer().start()
 
     # Reading the images from the file.
-    images = open("/mydata/MSCOCO_Images.txt", "r")
+    images = open("data/Images.txt", "r")
     for image in images:
         print("qik_pre_eval :: Executing :: ", image)
 
