@@ -8,6 +8,7 @@ import datetime
 from threading import Thread, Lock
 import threading
 import time
+import clipcap_caption_generator
 
 # Local constants (To be moved to eval constants)
 eval_k = 16
@@ -101,8 +102,8 @@ def fetch_images():
 
 if __name__ == '__main__':
 
-    # Initializing the ML Models.
-    # caption_generator.init()
+    # Initial Loading of the caption generator model.
+    clipcap_caption_generator.init()
 
     # Starting the consumer.
     print("qik_pre_eval :: main :: Starting Client")
