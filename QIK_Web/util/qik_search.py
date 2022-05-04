@@ -99,7 +99,6 @@ def qik_search(query_image, ranking_func=None, obj_det_enabled=False, pure_objec
     clipcap_caption_generator.init()
 
     # Generating the captions.
-    # query = caption_generator.get_caption(query_image, True)
     query = clipcap_caption_generator.get_captions(query_image)
 
     # Handling the fullstops in captions.
