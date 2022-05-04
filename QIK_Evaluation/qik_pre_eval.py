@@ -78,7 +78,6 @@ def retrieve(query_image):
 
     # Noting QIK time.
     qik_time = datetime.datetime.now() - time
-    print("qik_pre_eval :: retrieve:: QIK Fetch Execution time :: ", qik_time)
 
     # Removing query image from the result set.
     for res in qik_pre_results:
@@ -87,7 +86,7 @@ def retrieve(query_image):
         qik_results.append(res)
 
     # Adding data to the return dictionary.
-    ret_dict["qik_time"] = qik_time.microseconds
+    ret_dict["qik_time"] = qik_time.total_seconds()
     ret_dict["qik_results"] = qik_results
 
     # Writing the output to a file.
