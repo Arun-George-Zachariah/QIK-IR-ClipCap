@@ -372,13 +372,7 @@ def precision_at_k(r, k):
 
 def average_precision(r):
     r = np.asarray(r) != 0
-    # out = [precision_at_k(r, k + 1) for k in range(r.size) if r[k]]
-    out = []
-    for k in range(r.size):
-        if r[k]:
-            out.append(precision_at_k(r, k + 1))
-        else:
-            out.append(0)
+    out = [precision_at_k(r, k + 1) for k in range(r.size) if r[k]]
     if not out:
         return 0.
     return np.mean(out)
