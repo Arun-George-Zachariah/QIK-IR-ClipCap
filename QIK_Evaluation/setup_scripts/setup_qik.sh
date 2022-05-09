@@ -20,9 +20,9 @@ wget https://mailmissouri-my.sharepoint.com/:u:/g/personal/az2z7_umsystem_edu/ER
 # 4) MSCOCO 15K Image dataset.
 wget https://mailmissouri-my.sharepoint.com/:u:/g/personal/az2z7_umsystem_edu/ESYcm3NFPoBHr0b4owabdikB6dBcWx7zMsJD_G2oww725Q?download=1 -O $HOME/apache-tomcat/webapps/QIK_MSCOCO.tar
 # 5) MSCOCO Instances JSON.
-wget https://mailmissouri-my.sharepoint.com/:u:/g/personal/az2z7_umsystem_edu/EcWfuWe3ighBp7X7vEP7XjAB7iU2FX5vpHWULr_HHJTXgA?download=1 -O $QIK_HOME/Reproduce_Results/data/instances_2017.json
+wget https://mailmissouri-my.sharepoint.com/:u:/g/personal/az2z7_umsystem_edu/EcWfuWe3ighBp7X7vEP7XjAB7iU2FX5vpHWULr_HHJTXgA?download=1 -O $QIK_HOME/QIK_Evaluation/data/instances_2017.json
 # 6) MSCOCO Captions JSON.
-wget https://mailmissouri-my.sharepoint.com/:u:/g/personal/az2z7_umsystem_edu/EVlUkGbY6MdLhqNL32eir6IBop1_mDvhp8ZyATgjRLLhGw?download=1 -O $QIK_HOME/Reproduce_Results/data/captions_2017.json
+wget https://mailmissouri-my.sharepoint.com/:u:/g/personal/az2z7_umsystem_edu/EVlUkGbY6MdLhqNL32eir6IBop1_mDvhp8ZyATgjRLLhGw?download=1 -O $QIK_HOME/QIK_Evaluation/data/captions_2017.json
 
 # Changing the IP address from localhost.
 bash $QIK_HOME/scripts/deploy_scripts/change_ip.sh
