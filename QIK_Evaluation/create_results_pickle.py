@@ -13,6 +13,7 @@ if __name__ == "__main__":
     parser.add_argument('-delf', default="pre_constructed_data/DELF_Pre_Results_Dict.txt", metavar='data', help='DELF Results.', required=False)
     parser.add_argument('-lire', default="pre_constructed_data/LIRE_Pre_Results_Dict.txt", metavar='data', help='LIRE Results.', required=False)
     parser.add_argument('-crow', default="pre_constructed_data/Crow_Pre_Results_Dict.txt", metavar='data', help='CroW Results.', required=False)
+    parser.add_argument('-csq', default="pre_constructed_data/CSQ_Pre_Results_Dict.txt", metavar='data', help='CSQ Results.', required=False)
     parser.add_argument('-out', default="pre_constructed_data/15K_Results.pkl", metavar='data', help='Pickled results file.', required=False)
     args = parser.parse_args()
 
@@ -75,10 +76,17 @@ if __name__ == "__main__":
         crow_results_dict[result.split("::")[0].strip()] = json.loads(result.split("::")[1].replace("'", '"'))
     print("crow_results_dict :: ", crow_results_dict)
 
+    # Iterating over CSQ Results.
+    csq_results_dict = {}
+    results = open(args.csq, "r")
+    for result in results:
+        csq_results_dict[result.split("::")[0].strip()] = json.loads(result.split("::")[1].replace("'", '"'))
+    print("csq_results_dict :: ", csq_results_dict)
+
     # Combining all the results.
     for image in qik_results_dict:
-        if image in qik_objects_8_results_dict and image in qik_objects_9_results_dict and image in dv_results_dict and image in delf_results_dict and image in lire_results_dict and image in dir_results_dict and image in crow_results_dict:
-            results_dict[image] = {**qik_results_dict[image], **qik_objects_8_results_dict[image], **qik_objects_9_results_dict[image], **dv_results_dict[image], **delf_results_dict[image], **lire_results_dict[image], **dir_results_dict[image], **crow_results_dict[image]}
+        if image in qik_objects_8_results_dict and image in qik_objects_9_results_dict and image in dv_results_dict and image in delf_results_dict and image in lire_results_dict and image in dir_results_dict and image in crow_results_dict  and image in csq_results_dict:
+            results_dict[image] = {**qik_results_dict[image], **qik_objects_8_results_dict[image], **qik_objects_9_results_dict[image], **dv_results_dict[image], **delf_results_dict[image], **lire_results_dict[image], **dir_results_dict[image], **crow_results_dict[image], **csq_results_dict[image]}
     print("results_dict :: ", results_dict)
 
     # Converting the results to a pickle file.
