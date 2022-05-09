@@ -60,7 +60,7 @@ bash $QIK_HOME/scripts/deploy_scripts/deploy_index_engine.sh
 pip install -r $QIK_HOME/scripts/deploy_scripts/requirements.txt
 
 # Intalling pycoco
-cd $QIK_HOME/Reproduce_Results/pycocotools && make all && make install
+cd $QIK_HOME/QIK_Evaluation/pycocotools && make all && make install
 
 # Extracting the image dataset downloaded.
 cd $HOME/apache-tomcat/webapps/ && tar -xvf QIK_MSCOCO.tar
