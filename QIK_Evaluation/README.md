@@ -52,11 +52,11 @@ We have a create setup script `setup_scripts/setup_prereq.sh` to install these p
    **Note** Since creating the ground truth takes time, we have make available the ground truth for τ=0.6 at `data/Ground_Truth_6.pkl` and τ=0.7 at `data/Ground_Truth_7.pkl`.
 3. Consolidate query results from all the CBIR systems using:
     ```
-    python create_results_pickle.py -qik <QIK_CAPTIONS_RESULTS> -qik_objects_8 <QIK_OBJECTS(0.9)_RESULTS> -qik_objects_9 <QIK_OBJECTS(0.8)_RESULTS> -frcnn <FR-CNN RESULTS> -dir <DIR_RESULTS> -delf <DELF_RESULTS> -lire <LIRE RESULTS> -crow <CroW_RESULTS> -out <CONSOLIDATED_QUERY_RESULTS> 
+    python create_results_pickle.py -qik <QIK_CAPTIONS_RESULTS> -qik_objects_8 <QIK_OBJECTS(0.9)_RESULTS> -qik_objects_9 <QIK_OBJECTS(0.8)_RESULTS> -frcnn <FR-CNN RESULTS> -dir <DIR_RESULTS> -delf <DELF_RESULTS> -lire <LIRE RESULTS> -crow <CroW_RESULTS> -csq <CSQ_RESULTS> -out <CONSOLIDATED_QUERY_RESULTS> 
     ```
    **Note** Pre-constructed results are available at `pre_constructed_data`. To create a consolidated query results pickle:
     ```
-    python create_results_pickle.py -qik pre_constructed_data/QIK_Captions_Pre_Results_Dict.txt -qik_objects_8 pre_constructed_data/QIK_Objects_8_Pre_Results_Dict.txt -qik_objects_9 pre_constructed_data/QIK_Objects_9_Pre_Results_Dict.txt -frcnn pre_constructed_data/Deep_Vision_Pre_Results_Dict.txt -dir pre_constructed_data/DIR_Pre_Results_Dict.txt -delf pre_constructed_data/DELF_Pre_Results_Dict.txt -lire pre_constructed_data/LIRE_Pre_Results_Dict.txt -crow pre_constructed_data/Crow_Pre_Results_Dict.txt -out pre_constructed_data/15K_Results.pkl
+python create_results_pickle.py -qik pre_constructed_data/QIK_Captions_Pre_Results_Dict.txt -qik_objects_8 pre_constructed_data/QIK_Objects_8_Pre_Results_Dict.txt -qik_objects_9 pre_constructed_data/QIK_Objects_9_Pre_Results_Dict.txt -frcnn pre_constructed_data/Deep_Vision_Pre_Results_Dict.txt -dir pre_constructed_data/DIR_Pre_Results_Dict.txt -delf pre_constructed_data/DELF_Pre_Results_Dict.txt -lire pre_constructed_data/LIRE_Pre_Results_Dict.txt -crow pre_constructed_data/Crow_Pre_Results_Dict.txt -csq pre_constructed_data/CSQ_Pre_Results_Dict.txt -out pre_constructed_data/15K_Results.pkl
     ```
 4. To get mAP Results:
     ```
