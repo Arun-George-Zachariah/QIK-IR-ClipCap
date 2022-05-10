@@ -42,7 +42,6 @@ def init():
 def evaluate(query_lst):
     print("evaluate.py :: evaluate :: Starting the evaluation!")
     print("evaluate.py :: evaluate :: Query Images Length :: ", len(query_lst))
-    print("evaluate.py :: evaluate :: Query Images", query_lst)
 
     # length of query images
     query_lst_len = len(query_lst)
@@ -111,42 +110,33 @@ def evaluate(query_lst):
             continue
 
         ground_truth = ground_truth_dict[query_image]
-        print("evaluate.py :: evaluate :: query_image :: ", query_image)
-        print("evaluate.py :: evaluate :: ground_truth :: ", ground_truth)
 
         # Get QIK results
         qik_results = pre_computed_results[query_image]["qik_results"]
-        print("evaluate.py :: evaluate :: qik_results", qik_results)
         qik_time_lst.append(pre_computed_results[query_image]["qik_time"])
 
         # Get DIR results
         dir_results = pre_computed_results[query_image]["dir_results"]
-        print("evaluate.py :: evaluate :: dir_results", dir_results)
         dir_time_lst.append(pre_computed_results[query_image]["dir_time"])
 
         # Get LIRE results
         lire_results = pre_computed_results[query_image]["lire_results"]
-        print("evaluate.py :: evaluate :: lire_results", lire_results)
         lire_time_lst.append(pre_computed_results[query_image]["lire_time"])
 
         # Get DELF results
         delf_results = pre_computed_results[query_image]["delf_results"]
-        print("evaluate.py :: evaluate :: delf_results", delf_results)
         delf_time_lst.append(pre_computed_results[query_image]["delf_time"])
 
         # Deep Vision results
         dv_results = pre_computed_results[query_image]["dv_results"]
-        print("evaluate.py :: evaluate :: dv_results", dv_results)
         dv_time_lst.append(pre_computed_results[query_image]["dv_time"])
 
         # CROW results
         crow_results = pre_computed_results[query_image]["crow_results"]
-        print("evaluate.py :: evaluate :: crow_results", crow_results)
         crow_time_lst.append(pre_computed_results[query_image]["crow_time"])
 
         # CSQ results
         csq_results = pre_computed_results[query_image]["csq_results"]
-        print("evaluate.py :: evaluate :: csq_results", csq_results)
         csq_time_lst.append(pre_computed_results[query_image]["csq_time"])
 
         # Computing the mAP values.
