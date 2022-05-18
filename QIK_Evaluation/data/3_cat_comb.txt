@@ -1,75 +1,75 @@
-bottle,cup,oven
-bottle,cup,refrigerator
-cup,bowl,sink
-person,baseball glove,chair
-bottle,sink,refrigerator
-person,baseball bat,chair
-couch,dining table,tv
-baseball bat,baseball glove,chair
-bowl,sink,refrigerator
-bowl,oven,sink
-cup,bowl,oven
-chair,oven,sink
-bowl,pizza,dining table
-chair,oven,refrigerator
-bottle,oven,sink
-chair,tv,book
-chair,couch,tv
-bottle,dining table,oven
-oven,sink,refrigerator
-microwave,oven,sink
-bottle,cup,sink
-bottle,bowl,sink
-cup,mouse,keyboard
-chair,dining table,sink
-bottle,bowl,refrigerator
-cup,chair,tv
-bottle,knife,sink
-dining table,microwave,oven
-couch,tv,vase
-cup,oven,sink
-couch,tv,book
-chair,dining table,oven
-tv,laptop,book
-laptop,mouse,cell phone
-bowl,oven,refrigerator
-couch,dining table,book
-bottle,oven,refrigerator
-chair,sink,refrigerator
-dining table,oven,refrigerator
-bowl,sandwich,dining table
-bottle,knife,oven
-chair,dining table,microwave
-fork,bowl,sandwich
-microwave,oven,refrigerator
-chair,microwave,oven
-bottle,chair,refrigerator
-bowl,microwave,oven
-microwave,sink,refrigerator
-bottle,microwave,oven
-bottle,bowl,oven
-person,bottle,toothbrush
-backpack,laptop,cell phone
-person,potted plant,toothbrush
-tie,bottle,oven
-tie,bowl,oven
-person,tie,oven
-knife,cake,cell phone
-bench,cell phone,book
-tie,spoon,oven
-umbrella,suitcase,chair
-tie,knife,oven
-person,tie,traffic light
-person,horse,handbag
-person,carrot,hot dog
-car,tie,traffic light
-bicycle,car,tie
-person,bowl,toothbrush
-bottle,knife,pizza
-couch,book,vase
-fork,pizza,dining table
+person,chair,dining table
+person,cup,dining table
+person,car,truck
+cup,chair,dining table
+person,cup,chair
+bottle,cup,dining table
+bottle,chair,dining table
+cup,fork,dining table
+cup,bowl,dining table
+person,sports ball,tennis racket
+person,bottle,dining table
+person,car,bus
+person,baseball bat,baseball glove
+cup,knife,dining table
+fork,knife,dining table
+person,bottle,cup
+person,knife,dining table
+person,bottle,chair
+person,fork,dining table
+person,car,traffic light
+cup,spoon,dining table
+person,bowl,dining table
+bowl,chair,dining table
+spoon,bowl,dining table
+bottle,cup,chair
+person,cup,bowl
+person,car,handbag
+bottle,cup,bowl
+cup,fork,knife
 cup,pizza,dining table
-tv,laptop,keyboard
-tv,laptop,mouse
-bottle,dining table,refrigerator
-chair,book,vase
+chair,couch,book
+tv,mouse,keyboard
+cup,spoon,bowl
+bottle,bowl,dining table
+person,pizza,dining table
+person,wine glass,dining table
+person,cup,fork
+chair,couch,dining table
+person,cup,knife
+person,spoon,bowl
+person,spoon,dining table
+bottle,knife,dining table
+bottle,fork,dining table
+fork,bowl,dining table
+bottle,cup,knife
+chair,dining table,book
+knife,chair,dining table
+person,bottle,bowl
+chair,couch,tv
+cup,bowl,chair
+person,couch,remote
+wine glass,chair,dining table
+person,boat,spoon
+boat,knife,bowl
+cat,chair,bed
+boat,spoon,bowl
+person,boat,bowl
+person,truck,surfboard
+person,boat,knife
+boat,knife,spoon
+knife,cake,dining table
+person,car,bench
+person,backpack,suitcase
+umbrella,chair,dining table
+person,wine glass,cake
+cake,chair,book
+person,banana,microwave
+person,cat,potted plant
+person,cake,book
+boat,fork,dining table
+boat,fork,knife
+car,umbrella,teddy bear
+elephant,bear,zebra
+boat,cup,fork
+boat,bowl,sandwich

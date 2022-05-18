@@ -1,75 +1,75 @@
-baseball glove,chair
-baseball bat,chair
-car,airplane
-airplane,truck
-train,traffic light
-sink,refrigerator
-oven,sink
-sink,vase
-chair,oven
-dining table,sink
-knife,oven
-bowl,sink
-cup,refrigerator
-chair,sink
-bed,tv
-tv,vase
-bowl,pizza
-bowl,sandwich
-chair,microwave
-potted plant,oven
-microwave,refrigerator
-microwave,sink
-tv,clock
-tv,cell phone
-dining table,microwave
-cup,pizza
-tv,laptop
-couch,tv
-oven,refrigerator
-bowl,microwave
-cup,sink
-baseball bat,baseball glove
-dining table,oven
-knife,pizza
-fork,pizza
-potted plant,sink
-cup,oven
-knife,sink
-toilet,sink
-skateboard,laptop
-fork,laptop
-frisbee,cup
-surfboard,potted plant
-motorcycle,kite
-sheep,tie
-knife,sandwich
-potted plant,tv
-bowl,refrigerator
-sports ball,baseball glove
-backpack,cake
-bicycle,fork
-car,cake
-carrot,vase
-broccoli,vase
+person,chair
+person,car
+person,handbag
+chair,dining table
+person,dining table
+cup,dining table
+person,cup
+person,backpack
+person,bottle
+person,skateboard
+person,bench
+person,surfboard
+person,tennis racket
+person,skis
+person,truck
+person,sports ball
+car,truck
+person,bus
+bowl,dining table
+bottle,dining table
+cup,chair
+bottle,cup
+person,cell phone
+fork,dining table
+bottle,chair
+cup,bowl
+knife,dining table
+chair,couch
+person,tie
+person,umbrella
+chair,book
+person,motorcycle
+chair,tv
+person,book
+person,baseball glove
+person,bowl
+person,baseball bat
+bottle,bowl
+car,bus
+person,couch
+person,train
+person,traffic light
+spoon,bowl
+pizza,dining table
+couch,book
+spoon,dining table
+cup,knife
+person,knife
+boat,knife
+boat,spoon
+truck,surfboard
+bench,sheep
 hot dog,tv
-horse,cell phone
-skateboard,stop sign
-suitcase,banana
-car,giraffe
-bird,backpack
-donut,couch
-bench,keyboard
-hot dog,clock
-boat,bed
-bicycle,laptop
-horse,backpack
+sandwich,tv
+sheep,tie
 microwave,toothbrush
-tie,hot dog
-car,cake
-dog,toothbrush
-boat,sports ball
-sink,teddy bear
-spoon,keyboard
-tie,apple
-carrot,vase
+spoon,toothbrush
+bear,zebra
+elephant,book
+zebra,book
+elephant,bear
+boat,cup
+boat,sandwich
+boat,fork
+skateboard,cup
+person,clock
+cup,fork
+toilet,sink
+person,bicycle
+car,traffic light
+person,remote
+tv,book
+person,kite
+fork,knife
+bottle,sink
