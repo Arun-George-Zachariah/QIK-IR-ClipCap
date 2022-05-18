@@ -56,7 +56,7 @@ We have a create setup script `setup_scripts/setup_prereq.sh` to install these p
     ```
    **Note** Pre-constructed results are available at `pre_constructed_data`. To create a consolidated query results pickle:
     ```
-python create_results_pickle.py -qik pre_constructed_data/QIK_Captions_Pre_Results_Dict.txt -qik_objects_8 pre_constructed_data/QIK_Objects_8_Pre_Results_Dict.txt -qik_objects_9 pre_constructed_data/QIK_Objects_9_Pre_Results_Dict.txt -frcnn pre_constructed_data/Deep_Vision_Pre_Results_Dict.txt -dir pre_constructed_data/DIR_Pre_Results_Dict.txt -delf pre_constructed_data/DELF_Pre_Results_Dict.txt -lire pre_constructed_data/LIRE_Pre_Results_Dict.txt -crow pre_constructed_data/Crow_Pre_Results_Dict.txt -csq pre_constructed_data/CSQ_Pre_Results_Dict.txt -out pre_constructed_data/15K_Results.pkl
+    python create_results_pickle.py -qik pre_constructed_data/QIK_Captions_Pre_Results_Dict.txt -qik_objects_8 pre_constructed_data/QIK_Objects_8_Pre_Results_Dict.txt -qik_objects_9 pre_constructed_data/QIK_Objects_9_Pre_Results_Dict.txt -frcnn pre_constructed_data/Deep_Vision_Pre_Results_Dict.txt -dir pre_constructed_data/DIR_Pre_Results_Dict.txt -delf pre_constructed_data/DELF_Pre_Results_Dict.txt -lire pre_constructed_data/LIRE_Pre_Results_Dict.txt -crow pre_constructed_data/Crow_Pre_Results_Dict.txt -csq pre_constructed_data/CSQ_Pre_Results_Dict.txt -out pre_constructed_data/15K_Results.pkl
     ```
 4. To get mAP Results:
     ```
