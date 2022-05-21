@@ -83,8 +83,6 @@ def evaluate(query_lst):
             continue
 
         ground_truth = ground_truth_dict[query_image]
-        print("evaluate.py :: evaluate :: query_image :: ", query_image)
-        print("evaluate.py :: evaluate :: ground_truth :: ", ground_truth)
 
         # Get QIK results
         qik_results = pre_computed_results[query_image]["qik_results"]
