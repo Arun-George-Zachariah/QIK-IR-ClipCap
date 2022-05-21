@@ -100,7 +100,7 @@ def evaluate(query_lst):
         qik_objects_8_time_lst.append(pre_computed_results[query_image]["qik_obj_8_time"])
 
         # Computing the mAP values.
-        if len(qik_results) <= 0 or len(qik_objects_9_results) <= 0 or len(qik_objects_8_results) <= 0:
+        if len(qik_results) <= 0:
             print("evaluate.py :: evaluate :: Skipping the query image as no results are returned :: ", query_image)
             # Decrementing the count from the list of images.
             query_lst_len -= 1
