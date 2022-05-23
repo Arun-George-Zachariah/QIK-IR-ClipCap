@@ -1,5 +1,4 @@
 from sys import path
-from tkinter import N
 path.append("../QIK_Web/util/")
 path.append("../ML_Models/ObjectDetection")
 
