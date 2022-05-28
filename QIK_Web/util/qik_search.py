@@ -14,6 +14,15 @@ from apted import APTED, PerEditOperationConfig
 import apted.helpers as apth
 import detect_objects
 import random
+from concurrent.futures import ThreadPoolExecutor
+
+
+def rank_candidates(query_rep, cand_rep, captionRanksDict, key):
+    parseTED = APTED(apth.Tree.from_text(query_rep), apth.Tree.from_text(cand_rep),
+                                 PerEditOperationConfig(1, 1, 1)).compute_edit_distance()
+
+    captionRanksDict[key] = parseTED
+
 
 def get_similar_images(query_image):
     similar_images = {}
@@ -119,52 +128,46 @@ def qik_search(query_image, ranking_func=None, obj_det_enabled=False, pure_objec
         res = obj_res
     else:
         res = obj_res + cap_res
-
+    
     # Forming the return image set.
     if res is not None:
-        # Generating the parse tree for the input query.
-        queryParseTree = parse_show_tree.parseSentence(query)
-
-        # Generating the dependency tree for the input query.
-        queryDepTree = parse_show_tree.dependencyParser(query)
-
         # Performing TED based Ranking on the parse tree.
         if ranking_func == 'Parse Tree':
-            for resMap in res:
-                # for Auditing TED Time
-                ted_time = datetime.datetime.now()
 
-                image = resMap['fileURL']
-                caption = resMap['caption']
-                captionParseTree = resMap['parseTree']
+            # Generating the parse tree for the input query.
+            queryParseTree = parse_show_tree.parseSentence(query)
 
-                parseTED = APTED(apth.Tree.from_text(queryParseTree), apth.Tree.from_text(captionParseTree),
-                                 PerEditOperationConfig(1, 1, 1)).compute_edit_distance()
+            with ThreadPoolExecutor(max_workers=40) as exe:
+                for resMap in res:
+                    image = resMap['fileURL']
+                    caption = resMap['caption']
+                    captionParseTree = resMap['parseTree']
 
-                # Temp Fix done to replace Tomcat IP. Needs to be handled in the IndexEngine.
-                image_path = image.replace(constants.TOMCAT_OLD_IP_ADDR, constants.TOMCAT_IP_ADDR)
+                    # Temp Fix done to replace Tomcat IP. Needs to be handled in the IndexEngine.
+                    image_path = image.replace(constants.TOMCAT_OLD_IP_ADDR, constants.TOMCAT_IP_ADDR)
 
-                captionRanksDict[image_path + ":: " + caption] = parseTED
+                    # Ranking the candidates
+                    exe.submit(rank_candidates, queryParseTree, captionParseTree, captionRanksDict, image_path + ":: " + caption)
 
             # Sorting the results based on the Parse TED.
             sortedCaptionRanksDict = sorted(captionRanksDict.items(), key=lambda kv: kv[1], reverse=False)
-
+        
         elif ranking_func == 'Dependency Tree':
-            for resMap in res:
-                # for Auditing TED Time
-                ted_time = datetime.datetime.now()
 
-                image = resMap['fileURL']
-                caption = resMap['caption']
-                depTree = resMap['depTree']
+            # Generating the dependency tree for the input query.
+            queryDepTree = parse_show_tree.dependencyParser(query)
 
-                parseTED = APTED(apth.Tree.from_text(queryDepTree), apth.Tree.from_text(depTree),
-                                 PerEditOperationConfig(1, 1, 1)).compute_edit_distance()
+            with ThreadPoolExecutor(max_workers=40) as exe:
+                for resMap in res:
+                    image = resMap['fileURL']
+                    caption = resMap['caption']
+                    depTree = resMap['depTree']
 
-                # Temp Fix done to replace Tomcat IP. Needs to be handled in the IndexEngine.
-                image_path = image.replace(constants.TOMCAT_OLD_IP_ADDR, constants.TOMCAT_IP_ADDR)
+                    # Temp Fix done to replace Tomcat IP. Needs to be handled in the IndexEngine.
+                    image_path = image.replace(constants.TOMCAT_OLD_IP_ADDR, constants.TOMCAT_IP_ADDR)
 
-                captionRanksDict[image_path + ":: " + caption] = parseTED
+                    # Ranking the candidates
+                    exe.submit(rank_candidates, queryDepTree, depTree, captionRanksDict, image_path + ":: " + caption)
 
             # Sorting the results based on the Parse TED.
             sortedCaptionRanksDict = sorted(captionRanksDict.items(), key=lambda kv: kv[1], reverse=False)
