@@ -39,7 +39,7 @@ def retrieve(query_image):
     print("create_dir_results.py :: DIR :: dir_results :: ", dir_results)
 
     # Adding data to the return dictionary.
-    ret_dict["dir_time"] = dir_time.microseconds
+    ret_dict["dir_time"] = dir_time.total_seconds()
     ret_dict["dir_results"] = dir_results
     print("create_dir_results.py :: retrieve :: ret_dict :: ", str(ret_dict))
 

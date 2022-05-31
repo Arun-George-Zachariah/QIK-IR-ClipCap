@@ -22,3 +22,6 @@ done
 
 # Extracting DIR Features. (Note features needs to be extraced with a GPU)
 cd ../ && python -m dirtorch.extract_features --dataset 'ImageList("QIK_Data/DIR_Candidates.txt")' --checkpoint QIK_Data/Resnet-101-AP-GeM.pt --output QIK_Data/QIK_DIR_Features --gpu 0
+
+# Downloading pre-extracted features
+wget https://mailmissouri-my.sharepoint.com/:u:/g/personal/az2z7_umsystem_edu/Eckp3O37GrlLkJMUkfqMaBoBhGNg0XxlPNSG6UvtTG8BCQ?download=1 -O  $QIK_HOME/ML_Models/DeepImageRetrieval/QIK_Data/QIK_DIR_Features.npy
