@@ -41,7 +41,7 @@ def retrieve(query_image):
     ret_dict["delf_results"] = delf_results
 
     # Writing the output to a file.
-    with open("data/DIR_Results_Dict.txt", 'a+') as f:
+    with open("data/DELF_Results_Dict.txt", 'a+') as f:
         f.write(query_image + ":: " + str(ret_dict) + "\n")
 
     print("create_delf_results.py :: retrieve :: ret_dict :: ", str(ret_dict))
