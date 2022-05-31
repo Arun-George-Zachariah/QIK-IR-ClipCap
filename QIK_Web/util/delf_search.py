@@ -74,7 +74,6 @@ def compute_locations_and_descriptors(image_path):
     with tf.train.MonitoredSession() as sess:
         image = sess.run(image_tf)
 
-        print('Extracting locations and descriptors from %s' % image_path)
         return sess.run(
             [module_outputs['locations'], module_outputs['descriptors']],
             feed_dict={image_placeholder: image})
@@ -104,14 +103,12 @@ def init():
             resize_images_folder(constants.DB_IMAGE_DIR)
 
         db_images = get_resized_db_image_paths()
-        print(db_images)
 
         # Creating the index file.
         for image_path in db_images:
             image_files_list.append(constants.TOMCAT_IP_ADDR + constants.IMAGE_DATA_DIR + image_path.split("/")[-1])
 
         if path.exists(constants.DELF_DB_PATH):
-            print("Pre computed db exists.")
             file = open(constants.DELF_DB_PATH, 'rb')
             results_dict = pickle.load(file)
             file.close()
@@ -121,7 +118,6 @@ def init():
             with tf.train.MonitoredSession() as sess:
                 for image_path in db_images:
                     image = sess.run(image_tf)
-                    print('Extracting locations and descriptors from %s' % image_path)
                     results_dict[image_path] = sess.run(
                         [module_outputs['locations'], module_outputs['descriptors']],
                         feed_dict={image_placeholder: image})
@@ -192,7 +188,6 @@ def delf_search(query_image, fetch_limit):
         list(set([np.argmax([np.array(accumulated_indexes_boundaries) > index])
                   for index in unique_indices])))
     unique_image_indexes
-    print(unique_image_indexes)
 
     # Array to keep track of all candidates in database.
     inliers_counts = []
@@ -211,15 +206,12 @@ def delf_search(query_image, fetch_limit):
             continue
         # the number of inliers as the score for retrieved images.
         inliers_counts.append({"index": index, "inliers": sum(inliers)})
-        print('Found inliers for image {} -> {}'.format(index, sum(inliers)))
 
     top_match = sorted(inliers_counts, key=lambda k: k['inliers'], reverse=True)[:fetch_limit]
-    print(top_match)
 
     for entry in top_match:
         ret_list.append(image_files_list[int(entry["index"])])
 
-    print("DELF return list :: ", ret_list)
     return ret_list
 
 
