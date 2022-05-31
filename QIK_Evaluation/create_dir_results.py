@@ -41,13 +41,12 @@ def retrieve(query_image):
     # Adding data to the return dictionary.
     ret_dict["dir_time"] = dir_time.total_seconds()
     ret_dict["dir_results"] = dir_results
-    print("create_dir_results.py :: retrieve :: ret_dict :: ", str(ret_dict))
 
     # Writing the output to a file.
     with open("data/DIR_Results_Dict.txt", 'a+') as f:
         f.write(query_image + ":: " + str(ret_dict) + "\n")
 
-    print("qik_pre_eval :: retrieve :: ret_dict :: ", str(ret_dict))
+    print("create_dir_results.py :: retrieve :: ret_dict :: ", str(ret_dict))
     return ret_dict
 
     return ret_dict

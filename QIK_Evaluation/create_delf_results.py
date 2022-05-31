@@ -37,9 +37,16 @@ def retrieve(query_image):
     print("QIK Server :: DELF :: delf_results :: ", delf_results)
 
     # Adding data to the return dictionary.
-    ret_dict["delf_time"] = delf_time.microseconds
+    ret_dict["delf_time"] = delf_time.total_seconds()
     ret_dict["delf_results"] = delf_results
+
+    # Writing the output to a file.
+    with open("data/DIR_Results_Dict.txt", 'a+') as f:
+        f.write(query_image + ":: " + str(ret_dict) + "\n")
+
     print("create_delf_results.py :: retrieve :: ret_dict :: ", str(ret_dict))
+    return ret_dict
+
 
     return ret_dict
 
