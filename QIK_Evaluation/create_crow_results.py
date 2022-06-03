@@ -50,9 +50,6 @@ def retrieve(query_image):
     print("create_crow_results.py :: retrieve :: ret_dict :: ", str(ret_dict))
     return ret_dict
 
-    return ret_dict
-
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Preprocess to extract text from a folder of csv files.')
     parser.add_argument('-data', default="data/15K_Dataset.pkl", metavar='data', help='Pickled file containing the list of images.', required=False)
