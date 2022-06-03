@@ -67,7 +67,7 @@ def crow_search(query_image, fetch_limit):
     ret_lst = []
 
     # Loading the image..
-    img = extract_features.load_img(crow_constants.CROW_IMAGE_DIR + query_image)
+    img = extract_features.load_img(query_image)
 
     # Extracting features for the query image.
     d = extract_features.format_img_for_vgg(img)
@@ -95,11 +95,11 @@ def query():
         file = request.files['file']
         fetch_limit = request.form.get('lim')
         file.save(os.path.join('data', 'image.jpg'))
-        return ' '.join(query('data/image.jpg', fetch_limit))
+        return ' '.join(crow_search(crow_constants.CROW_IMAGE_DIR + 'data/image.jpg', fetch_limit))
     elif request.method == 'GET':
         query_path = request.args.get("query", "")
         fetch_limit = request.args.get("lim", "")
-        return ' '.join(query(query_path, fetch_limit))
+        return ' '.join(crow_search(query_path, fetch_limit))
 
 
 if __name__ == '__main__':
