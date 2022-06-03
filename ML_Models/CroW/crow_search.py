@@ -60,8 +60,8 @@ def init():
 
         print "crow_search.py :: init :: End"
 
-def query(query_image, fetch_limit):
-    print "crow_search.py :: query :: query_image :: ", query_image
+def crow_search(query_image, fetch_limit):
+    print "crow_search.py :: crow_search :: query_image :: ", query_image
 
     # Return List
     ret_lst = []
@@ -89,7 +89,7 @@ def query(query_image, fetch_limit):
 
     return ret_lst
 
-@app.route('/deepvision', methods=['GET', 'POST'])
+@app.route('/crow', methods=['GET', 'POST'])
 def query():
     if request.method == 'POST':
         file = request.files['file']
