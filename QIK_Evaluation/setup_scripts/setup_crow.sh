@@ -21,3 +21,5 @@ export PYTHONPATH=$QIK_HOME/ML_Models/DeepVision/py-faster-rcnn/caffe-fast-rcnn/
 
 # Extracting the features.
 # To construct CroW features: cd $QIK_HOME/ML_Models/CroW && python extract_features.py --images $HOME/apache-tomcat/webapps/QIK_Image_Data --out out
+wget -O https://mailmissouri-my.sharepoint.com/:u:/g/personal/az2z7_umsystem_edu/EWxtiySg4bpHqJ_k7I2yDjkBpHOQlXAMWAvi0SdRd51Oow?download=1 -O $QIK_HOME/ML_Models/CroW/data/crow_features.tar
+cd $QIK_HOME/ML_Models/CroW/data && tar -xvf crow_features.tar
