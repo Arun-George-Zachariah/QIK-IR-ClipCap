@@ -29,8 +29,6 @@ def init():
         # Setting is_initialized as True
         is_initialized = True
 
-
-
 def get_distances(query_feats, db_feats):
     distances = pairwise_distances(query_feats, db_feats, 'cosine', n_jobs=-1)
     return distances
@@ -93,16 +91,3 @@ def frcnn_search(query_path, fetch_limit):
         modified_lst.append(image)
 
     return modified_lst[:int(fetch_limit)]
-
-
-if __name__ == '__main__':
-    global pca, db_feats
-    params = get_params()
-
-    # PCA MODEL
-    pca = pickle.load(open(params['pca_model'] + '_QIK.pkl', 'rb'))
-
-    # Load features for the DB Images.
-    db_feats = pickle.load(open(params['database_feats'], 'rb'))
-
-    app.run(host = '0.0.0.0')
