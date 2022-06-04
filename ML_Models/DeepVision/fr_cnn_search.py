@@ -47,10 +47,6 @@ def fr_cnn_search(query_path, fetch_limit):
     # Distance type
     dist_type = params['distance']
 
-
-    # Load features for the DB Images.
-    db_feats = pickle.load(open(params['database_feats'], 'rb'))
-
     # Load featurs for the input image.
     E = Extractor(params)
 
