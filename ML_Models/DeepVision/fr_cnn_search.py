@@ -11,7 +11,7 @@ db_feats = None
 
 # Initialization.
 def init():
-    global pca, db_feats
+    global pca, db_feats, is_initialized
 
     if not is_initialized:
         # Obtaining the model parameters
