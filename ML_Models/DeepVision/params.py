@@ -10,7 +10,8 @@ def get_params():
     params['stage']= 'rerank' # if 'rerank', display will include detections. if 'rerank2nd', reranking will be performed with QE top N locations
     params['use_regressed_boxes'] = False
     params['use_class_scores'] = False
-    params['gpu'] = True # Applies to feature extraction and reranking
+    # params['gpu'] = True # Applies to feature extraction and reranking
+    params['gpu'] = False # Applies to querying
     params['distance'] = 'cosine'
     params['pooling'] = 'max'
     
