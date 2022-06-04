@@ -11,7 +11,7 @@ git clone --recursive https://github.com/rbgirshick/py-faster-rcnn.git
 export FRCN_ROOT=`pwd`/py-faster-rcnn
 
 # Installing necessary libraries
-pip install cython numpy opencv-python scikit-learn easydict flask scikit-image
+pip install cython numpy scikit-learn easydict flask scikit-image
 
 # Build the Cython modules.
 cd $FRCN_ROOT/lib

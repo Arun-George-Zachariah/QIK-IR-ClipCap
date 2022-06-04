@@ -44,7 +44,7 @@ def get_params():
         params['ground_truth_file'] = 'data/images/paris/groundtruth'
 
     elif params['dataset'] is 'QIK':
-        params['database_images'] = '/path/to/image/dir/'
+        params['database_images'] = '/mydata/apache-tomcat/webapps/QIK_Image_Data/'
     
     params['query_list'] = 'data/imagelists/query' +'_' +params['dataset'] +  '.txt' # A txt file  
     params['frame_list'] = 'data/imagelists/' + params['dataset'] + '.txt' # A txt file - trecvid

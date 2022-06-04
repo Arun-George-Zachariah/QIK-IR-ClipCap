@@ -10,6 +10,9 @@ cd $QIK_HOME/ML_Models/DeepVision && bash setup.sh
 # Activating the conda environment.
 source activate deepvision
 
+# Installing additional requirements
+pip install opencv-python==4.2.0.32
+
 # Setting python path after installation.
 export PYTHONPATH=$QIK_HOME/ML_Models/DeepVision/py-faster-rcnn/caffe-fast-rcnn/python:$PYTHONPATH
 
