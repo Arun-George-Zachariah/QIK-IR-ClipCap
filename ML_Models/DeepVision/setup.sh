@@ -13,6 +13,10 @@ export FRCN_ROOT=`pwd`/py-faster-rcnn
 # Installing necessary libraries
 pip install cython numpy scikit-learn easydict flask scikit-image
 
+# For CPU only Cython module compilation
+# cp $FRCN_ROOT/../setup.py $FRCN_ROOT/lib
+# cp $FRCN_ROOT/../config.py $FRCN_ROOT/lib/fast_rcnn
+
 # Build the Cython modules.
 cd $FRCN_ROOT/lib
 make
@@ -32,6 +36,8 @@ pip install protobuf pyyaml
 #Build Caffe and pycaffe
 cd $FRCN_ROOT/caffe-fast-rcnn
 cp ../../Makefile.config .
+# For CPU only Caffe compilation
+# cp ../../Makefile_CPU.config Makefile.config
 make all
 make -j8 && make pycaffe
 

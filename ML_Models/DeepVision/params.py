@@ -14,9 +14,9 @@ def get_params():
     params['distance'] = 'cosine'
     params['pooling'] = 'max'
     
-    params['fast_rcnn_path'] = 'py-faster-rcnn/'
-    params['net'] = 'data/models/faster_rcnn_models/VGG16_faster_rcnn_final.caffemodel'
-    params['net_proto'] ='data/models/test.prototxt'
+    params['fast_rcnn_path'] = '/mydata/QIK-IR-ClipCap/ML_Models/DeepVision/py-faster-rcnn/'
+    params['net'] = '/mydata/QIK-IR-ClipCap/ML_Models/DeepVision/data/models/faster_rcnn_models/VGG16_faster_rcnn_final.caffemodel'
+    params['net_proto'] ='/mydata/QIK-IR-ClipCap/ML_Models/DeepVision/data/models/test.prototxt'
             
     params['layer'] = 'conv5_3'
     params['dimension'] = 512 # number of filters in the used layer
