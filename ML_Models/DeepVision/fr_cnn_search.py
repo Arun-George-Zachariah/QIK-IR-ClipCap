@@ -1,5 +1,3 @@
-from flask import Flask, request
-
 import pickle
 from sklearn.preprocessing import normalize
 from params import get_params
