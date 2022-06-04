@@ -31,7 +31,7 @@ def get_distances(query_feats, db_feats):
     distances = pairwise_distances(query_feats, db_feats, 'cosine', n_jobs=-1)
     return distances
 
-def frcnn_search(query_path, fetch_limit):
+def fr_cnn_search(query_path, fetch_limit):
     # Get the mentioned params
     params = get_params()
     global pca, db_feats
