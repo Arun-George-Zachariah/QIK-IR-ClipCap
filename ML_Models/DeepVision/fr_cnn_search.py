@@ -8,6 +8,7 @@ import os
 
 pca = None
 db_feats = None
+is_initialized = False
 
 # Initialization.
 def init():
