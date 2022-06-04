@@ -10,7 +10,6 @@ import os
 
 pca = None
 db_feats = None
-app = Flask(__name__)
 
 # Initialization.
 def init():
