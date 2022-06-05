@@ -59,7 +59,7 @@ if __name__ == '__main__':
 
     # Indexing images
     req_params = {"dir": args.db_dir}
-    requests.get(url = "localhost:8080/indexLire", params=req_params)
+    requests.get(url = "http://localhost:8080/indexLire", params=req_params)
 
     # Initializing a dictionary to hold the results.
     results_dict = {}
