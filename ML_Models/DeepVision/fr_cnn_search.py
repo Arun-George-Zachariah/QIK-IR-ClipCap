@@ -50,8 +50,6 @@ def fr_cnn_search(query_path, fetch_limit):
     # Load featurs for the input image.
     E = Extractor(params)
 
-    print "Extracting features for the input image."
-
     # Init empty np array of size 1 to store the input query features
     query_feats = np.zeros((1, dimension))
 
@@ -63,10 +61,8 @@ def fr_cnn_search(query_path, fetch_limit):
     query_feats[0, :] = feat
     query_feats = normalize(query_feats)
 
-    print "Computing distances"
     distances = get_distances(query_feats, db_feats)
     final_scores = distances
-    print "Distances :: ", final_scores
 
     # Reding the db images to form a map of image and their respective scores
     with open(params['frame_list'], 'r') as f:
