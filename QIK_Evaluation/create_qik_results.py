@@ -25,7 +25,12 @@ def retrieve(query_image):
     qik_results = []
 
     # Fetching the candidates from QIK.
-    qik_results_dict = qik_search(query_image_path, obj_det_enabled=False, ranking_func='Parse Tree', fetch_count=EVAL_K + 1)
+    try:
+        _, qik_results_dict, _ = qik_search(query_image_path, obj_det_enabled=False, ranking_func='Parse Tree', fetch_count=None, is_similar_search_enabled=False)
+    except:
+        print("qik_pre_eval :: Exception encountered for the query image :: ", query_image_path)
+        return None
+
     for result in qik_results_dict:
         k, v = result
         qik_pre_results.append(k.split("::")[0].split("/")[-1])
