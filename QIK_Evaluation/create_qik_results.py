@@ -49,6 +49,10 @@ def retrieve(query_image):
     ret_dict["qik_time"] = qik_time.microseconds
     ret_dict["qik_results"] = qik_results
 
+    # Writing the output to a file.
+    with open("data/QIK_Pre_Results_Dict.txt", 'a+') as f:
+        f.write(query_image + ":: " + str(ret_dict) + "\n")
+
     print("create_qik_results.py :: retrieve :: ret_dict :: ", str(ret_dict))
     return ret_dict
 
