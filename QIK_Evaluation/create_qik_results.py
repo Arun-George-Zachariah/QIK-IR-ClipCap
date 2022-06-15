@@ -46,7 +46,7 @@ def retrieve(query_image):
         qik_results.append(res)
 
     # Adding data to the return dictionary.
-    ret_dict["qik_time"] = qik_time.microseconds
+    ret_dict["qik_time"] = qik_time.total_seconds()
     ret_dict["qik_results"] = qik_results
 
     # Writing the output to a file.
