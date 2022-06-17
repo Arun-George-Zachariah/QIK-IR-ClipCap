@@ -3,11 +3,12 @@ path.append("../QIK_Web/util/")
 path.append("../ML_Models/ObjectDetection")
 
 import constants
-from qik_search import qik_search
+import clipcap_caption_generator
 import detect_objects
 import datetime
 import argparse
 import pickle
+from qik_search import qik_search
 
 # Local Constants
 EVAL_K = 16
@@ -65,6 +66,7 @@ if __name__ == '__main__':
 
     # Initializing the ML Models.
     detect_objects.init()
+    clipcap_caption_generator.init()
 
     # Initializing a dictionary to hold the results.
     results_dict = {}
