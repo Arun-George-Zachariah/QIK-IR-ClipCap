@@ -64,8 +64,12 @@ def qik_search(query_image, ranking_func=None, obj_det_enabled=False, pure_objec
     captionRanksDict = {}
     sortedCaptionRanksDict = {}
 
+    # Dictionary to audit data for future use
+    audit_dict = {'query': query_image}
+
     # Noting the time taken for further auditing.
     time = datetime.datetime.now()
+    
 
     if obj_det_enabled:
         # Initial Loading of the object detection model.
@@ -110,6 +114,10 @@ def qik_search(query_image, ranking_func=None, obj_det_enabled=False, pure_objec
     # Generating the captions.
     query = clipcap_caption_generator.get_captions(query_image)
 
+    # Noting the captioning time for further auditing.
+    captioning_time = datetime.datetime.now()
+    audit_dict['captioningTime'] = (captioning_time - time).total_seconds()
+
     # Handling the fullstops in captions.
     if query[-1] == '.':
         query = query[:-1].strip()
@@ -117,9 +125,14 @@ def qik_search(query_image, ranking_func=None, obj_det_enabled=False, pure_objec
     # Querying the backend to fetch the list of images and captions.
     cap_req = constants.SOLR_QUERY_URL + query
     cap_res = requests.get(cap_req).text
+
+    # Noting the database retrieval time for further auditing.
+    db_retrieval_time = datetime.datetime.now()
+    audit_dict['dbRetrievalTime'] = (db_retrieval_time - captioning_time).total_seconds()
+
+
     if cap_res is not None:
         cap_res = json.loads(cap_res)
-    # print("QIK Fetch Execution time :: ", (datetime.datetime.now() - time))
 
     # Merging the two responses.
     if obj_res is None:
@@ -188,9 +201,15 @@ def qik_search(query_image, ranking_func=None, obj_det_enabled=False, pure_objec
 
         if is_similar_search_enabled:
             similar_images = get_similar_images(query)
+    
+    # Noting the database retrieval time for further auditing.
+    ranking_time = datetime.datetime.now()
+    audit_dict['rankingTime'] = (ranking_time - db_retrieval_time).total_seconds()
 
-    # Auditing the QIK execution time.
-    # print("QIK Execution time :: ", (datetime.datetime.now() - time))
+    # Writing the response to a file
+    if cap_res is not None:
+        with open("QIK_Index_Engine_Results.txt", 'a+') as f:
+            f.write(query_image + "::" + str(audit_dict) + "\n")
 
     if sortedCaptionRanksDict and fetch_count is not None:
         return query, sortedCaptionRanksDict[:fetch_count], similar_images
