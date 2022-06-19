@@ -100,7 +100,7 @@ public class QueryMetaData {
 
         // Adding the query parse trees to the return map to prevent recomputing them for ranking
         parseTree = parseTree.replaceAll("\\(", "{").replaceAll("\\)", "}");
-        String retMap = "{\"queryResults\": " + retLst + ", \"querySceneParseTrees\": \"" + parseTree + "\"}";
+        String retMap = "{\"queryResults\": " + retLst + ", \"queryParseTree\": \"" + parseTree + "\"}";
         
         logger.debug("QueryMetaData :: queryData :: Time taken for querying :: " + (System.currentTimeMillis() - time));
         return retMap;
