@@ -209,7 +209,7 @@ def qik_search(query_image, ranking_func=None, obj_det_enabled=False, pure_objec
 
     # Writing the response to a file
     if cap_res is not None:
-        with open("QIK_Index_Engine_Results.txt", 'a+') as f:
+        with open("QIK_Retrieval_Time_Breakup.txt", 'a+') as f:
             f.write(query_image + "::" + str(audit_dict) + "\n")
 
     if sortedCaptionRanksDict and fetch_count is not None:
