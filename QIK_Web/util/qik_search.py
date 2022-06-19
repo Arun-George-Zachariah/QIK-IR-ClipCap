@@ -149,7 +149,7 @@ def qik_search(query_image, ranking_func=None, obj_det_enabled=False, pure_objec
         if ranking_func == 'Parse Tree':
 
             # Generating the parse tree for the input query.
-            queryParseTree = parse_show_tree.parseSentence(query)
+            queryParseTree = query_res["queryParseTree"]
 
             with ThreadPoolExecutor(max_workers=40) as exe:
                 for resMap in res:
