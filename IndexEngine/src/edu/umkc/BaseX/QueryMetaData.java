@@ -98,8 +98,11 @@ public class QueryMetaData {
             logger.debug("QueryMetaData :: queryData :: resultList :: " + retLst);
         }
 
+        // Adding the query parse trees to the return map to prevent recomputing them for ranking
+        String retMap = "{\"queryResults\": " + retLst + ", \"querySceneParseTrees\": " + parseTree + "}";
+        
         logger.debug("QueryMetaData :: queryData :: Time taken for querying :: " + (System.currentTimeMillis() - time));
-        return retLst;
+        return retMap;
     }
 
     public static List<String> queryBaseX(String xpath) {
