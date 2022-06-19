@@ -130,9 +130,10 @@ def qik_search(query_image, ranking_func=None, obj_det_enabled=False, pure_objec
     db_retrieval_time = datetime.datetime.now()
     audit_dict['dbRetrievalTime'] = (db_retrieval_time - captioning_time).total_seconds()
 
-
+    # Obtaining the query results
     if cap_res is not None:
-        cap_res = json.loads(cap_res)
+        query_res = json.loads(cap_res)
+        cap_res = query_res['queryResults']
 
     # Merging the two responses.
     if obj_res is None:
