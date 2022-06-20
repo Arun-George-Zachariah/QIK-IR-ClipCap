@@ -208,9 +208,8 @@ def qik_search(query_image, ranking_func=None, obj_det_enabled=False, pure_objec
     audit_dict['rankingTime'] = (ranking_time - db_retrieval_time).total_seconds()
 
     # Writing the response to a file
-    if cap_res is not None:
-        with open("QIK_Retrieval_Time_Breakup.txt", 'a+') as f:
-            f.write(query_image + "::" + str(audit_dict) + "\n")
+    with open("QIK_Retrieval_Time_Breakup.txt", 'a+') as f:
+        f.write(query_image + "::" + str(audit_dict) + "\n")
 
     if sortedCaptionRanksDict and fetch_count is not None:
         return query, sortedCaptionRanksDict[:fetch_count], similar_images
