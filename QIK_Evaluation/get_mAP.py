@@ -647,12 +647,12 @@ def evaluate_cat_comb(category_combination_file):
     # Pretty printing the results.
     t = PrettyTable(['System', 'k=2', 'k=4', 'k=8', 'k=16', "Average Time(s)"])
     t.add_row(['QIK', round(qik_2_average, 2), round(qik_4_average, 2), round(qik_8_average, 2), round(qik_16_average, 2), round(qik_time_average, 2)])
-    t.add_row(['CSQ', round(csq_2_average, 2), round(csq_4_average, 2), round(csq_8_average, 2), round(csq_16_average, 2), round(csq_time_average/1000000, 2)])
+    t.add_row(['CSQ', round(csq_2_average, 2), round(csq_4_average, 2), round(csq_8_average, 2), round(csq_16_average, 2), round(csq_time_average, 2)])
     t.add_row(['CroW', round(crow_2_average, 2), round(crow_4_average, 2), round(crow_8_average, 2), round(crow_16_average, 2), round(crow_time_average, 2)])
-    t.add_row(['FR-CNN', round(dv_2_average, 2), round(dv_4_average, 2), round(dv_8_average, 2), round(dv_16_average, 2), round(dv_time_average/1000000, 2)])
-    t.add_row(['DIR', round(dir_2_average, 2), round(dir_4_average, 2), round(dir_8_average, 2), round(dir_16_average, 2), round(dir_time_average/1000000, 2)])
-    t.add_row(['DELF', round(delf_2_average, 2), round(delf_4_average, 2), round(delf_8_average, 2), round(delf_16_average, 2), round(delf_time_average/1000000, 2)])
-    t.add_row(['LIRE', round(lire_2_average, 2), round(lire_4_average, 2), round(lire_8_average, 2), round(lire_16_average, 2), round(lire_time_average/1000000, 2)])
+    t.add_row(['FR-CNN', round(dv_2_average, 2), round(dv_4_average, 2), round(dv_8_average, 2), round(dv_16_average, 2), round(dv_time_average, 2)])
+    t.add_row(['DIR', round(dir_2_average, 2), round(dir_4_average, 2), round(dir_8_average, 2), round(dir_16_average, 2), round(dir_time_average, 2)])
+    t.add_row(['DELF', round(delf_2_average, 2), round(delf_4_average, 2), round(delf_8_average, 2), round(delf_16_average, 2), round(delf_time_average, 2)])
+    t.add_row(['LIRE', round(lire_2_average, 2), round(lire_4_average, 2), round(lire_8_average, 2), round(lire_16_average, 2), round(lire_time_average, 2)])
     print(t)
     print("Total no of queries considered = ", sum_query)
 
