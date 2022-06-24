@@ -40,8 +40,6 @@ def init():
     pre_computed_results = pickle.load(open(PRE_COMPUTED_RESULTS_PATH, "rb"))
 
 def evaluate(query_lst):
-    print("evaluate.py :: evaluate :: Starting the evaluation!")
-    print("evaluate.py :: evaluate :: Query Images Length :: ", len(query_lst))
 
     # length of query images
     query_lst_len = len(query_lst)
@@ -96,16 +94,13 @@ def evaluate(query_lst):
     csq_16_relevance_lst = []
 
     for query_image in query_lst:
-        print("evaluate.py :: evaluate :: Evaluation for the category combination :: %s :: with the image file :: %s" % (category_combination, query_image))
 
         if query_image not in pre_computed_results:
-            print("evaluate.py :: evaluate ::  Skipping evaluation for :: ", query_image)
             query_lst_len -= 1
             continue
 
         # Defining the ground truth.
         if query_image not in ground_truth_dict:
-            print("evaluate.py :: evaluate ::  Skipping evaluation for :: ", query_image, " :: since there is no ground truth available.")
             query_lst_len -= 1
             continue
 
@@ -141,7 +136,6 @@ def evaluate(query_lst):
 
         # Computing the mAP values.
         if len(qik_results) <= 0:
-            print("evaluate.py :: evaluate :: Skipping the query image as no results are returned :: ", query_image)
             # Decrementing the count from the list of images.
             query_lst_len -= 1
             continue
@@ -182,9 +176,6 @@ def evaluate(query_lst):
         crow_16_relevance_lst.append(get_binary_relevance(crow_results[:16], ground_truth))
         csq_16_relevance_lst.append(get_binary_relevance(csq_results[:16], ground_truth))
 
-    # Computing the mean.
-    print("evaluate.py :: evaluate ::   query_lst_len :: ", query_lst_len)
-
     if query_lst_len <= 0:
         print ("evaluate.py :: evaluate ::  Skipping evaluation (since no precomputed images were present) for :: %s" % (category_combination))
         return None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None
@@ -192,146 +183,114 @@ def evaluate(query_lst):
         # 1) QIK
         # k=2
         qik_2_map = get_mAP(qik_2_relevance_lst)
-        print("evaluate.py :: evaluate :: QIK :: k=2 :: Mean Average Precision :: %s :: %f" % (category_combination, qik_2_map))
 
         # k=4
         qik_4_map = get_mAP(qik_4_relevance_lst)
-        print("evaluate.py :: evaluate :: QIK :: k=4 :: Mean Average Precision :: %s :: %f" % (category_combination, qik_4_map))
 
         # k=8
         qik_8_map = get_mAP(qik_8_relevance_lst)
-        print("evaluate.py :: evaluate :: QIK :: k=8 :: Mean Average Precision :: %s :: %f" % (category_combination, qik_8_map))
 
         # k=16
         qik_16_map = get_mAP(qik_16_relevance_lst)
-        print("evaluate.py :: evaluate :: QIK :: k=16 :: Mean Average Precision :: %s :: %f" % (category_combination, qik_16_map))
 
+        # Average time
         qik_time_avg = get_average(qik_time_lst)
-        print("evaluate.py :: evaluate :: QIK :: Average time :: %f " % (qik_time_avg))
 
         # 2) DIR
         # k=2
         dir_2_map = get_mAP(dir_2_relevance_lst)
-        print("evaluate.py :: evaluate :: DIR :: k=2 :: Mean Average Precision :: %s :: %f" % (category_combination, dir_2_map))
 
         # k=4
         dir_4_map = get_mAP(dir_4_relevance_lst)
-        print("evaluate.py :: evaluate :: DIR :: k=4 :: Mean Average Precision :: %s :: %f" % (category_combination, dir_4_map))
 
         # k=8
         dir_8_map = get_mAP(dir_8_relevance_lst)
-        print("evaluate.py :: evaluate :: DIR :: k=8 :: Mean Average Precision :: %s :: %f" % (category_combination, dir_8_map))
 
         # k=16
         dir_16_map = get_mAP(dir_16_relevance_lst)
-        print("evaluate.py :: evaluate :: DIR :: k=16 :: Mean Average Precision :: %s :: %f" % (category_combination, dir_16_map))
 
+        # Average time
         dir_time_avg = get_average(dir_time_lst)
-        print("evaluate.py :: evaluate :: DIR :: Average time :: %f " % (dir_time_avg))
 
         # 3) LIRE
         # k=2
         lire_2_map = get_mAP(lire_2_relevance_lst)
-        print("evaluate.py :: evaluate :: LIRE :: k=2 :: Mean Average Precision :: %s :: %f" % (category_combination, lire_2_map))
 
         # k=4
         lire_4_map = get_mAP(lire_4_relevance_lst)
-        print("evaluate.py :: evaluate :: LIRE :: k=4 :: Mean Average Precision :: %s :: %f" % (category_combination, lire_4_map))
 
         # k=8
         lire_8_map = get_mAP(lire_8_relevance_lst)
-        print("evaluate.py :: evaluate :: LIRE :: k=8 :: Mean Average Precision :: %s :: %f" % (category_combination, lire_8_map))
 
         # k=16
         lire_16_map = get_mAP(lire_16_relevance_lst)
-        print("evaluate.py :: evaluate :: LIRE :: k=16 :: Mean Average Precision :: %s :: %f" % (category_combination, lire_16_map))
 
+        # Average time
         lire_time_avg = get_average(lire_time_lst)
-        print("evaluate.py :: evaluate :: LIRE :: Average time :: %f " % (lire_time_avg))
 
         # 4) DELF
         # k=2
         delf_2_map = get_mAP(delf_2_relevance_lst)
-        print("evaluate.py :: evaluate :: DELF :: k=2 :: Mean Average Precision :: %s :: %f" % (category_combination, delf_2_map))
 
         # k=4
         delf_4_map = get_mAP(delf_4_relevance_lst)
-        print("evaluate.py :: evaluate :: DELF :: k=4 :: Mean Average Precision :: %s :: %f" % (category_combination, delf_4_map))
 
         # k=8
         delf_8_map = get_mAP(delf_8_relevance_lst)
-        print("evaluate.py :: evaluate :: DELF :: k=8 :: Mean Average Precision :: %s :: %f" % (category_combination, delf_8_map))
 
         # k=16
         delf_16_map = get_mAP(delf_16_relevance_lst)
-        print("evaluate.py :: evaluate :: DELF :: k=16 :: Mean Average Precision :: %s :: %f" % (category_combination, delf_16_map))
 
+        # Average time
         delf_time_avg = get_average(delf_time_lst)
-        print("evaluate.py :: evaluate :: DELF :: Average time :: %f " % (delf_time_avg))
 
         # 5) Deep Vision
         # k=2
         dv_2_map = get_mAP(dv_2_relevance_lst)
-        print("evaluate.py :: evaluate :: Deep Vision :: k=2 :: Mean Average Precision :: %s :: %f" % (category_combination, dv_2_map))
 
         # k=4
         dv_4_map = get_mAP(dv_4_relevance_lst)
-        print("evaluate.py :: evaluate :: Deep Vision :: k=4 :: Mean Average Precision :: %s :: %f" % (category_combination, dv_4_map))
 
         # k=8
         dv_8_map = get_mAP(dv_8_relevance_lst)
-        print("evaluate.py :: evaluate :: Deep Vision :: k=8 :: Mean Average Precision :: %s :: %f" % (category_combination, dv_8_map))
 
         # k=16
         dv_16_map = get_mAP(dv_16_relevance_lst)
-        print("evaluate.py :: evaluate :: Deep Vision :: k=16 :: Mean Average Precision :: %s :: %f" % (category_combination, dv_16_map))
 
+        # Average time
         dv_time_avg = get_average(dv_time_lst)
-        print("evaluate.py :: evaluate :: Deep Vision :: Average time :: %f " % (dv_time_avg))
 
         # 6) CROW
         # k=2
         crow_2_map = get_mAP(crow_2_relevance_lst)
-        print("evaluate.py :: evaluate :: CROW :: k=2 :: Mean Average Precision :: %s :: %f" % (category_combination, crow_2_map))
 
         # k=4
         crow_4_map = get_mAP(crow_4_relevance_lst)
-        print("evaluate.py :: evaluate :: CROW :: k=4 :: Mean Average Precision :: %s :: %f" % (category_combination, crow_4_map))
 
         # k=8
         crow_8_map = get_mAP(crow_8_relevance_lst)
-        print("evaluate.py :: evaluate :: CROW :: k=8 :: Mean Average Precision :: %s :: %f" % (category_combination, crow_8_map))
 
         # k=16
         crow_16_map = get_mAP(crow_16_relevance_lst)
-        print("evaluate.py :: evaluate :: CROW :: k=16 :: Mean Average Precision :: %s :: %f" % (category_combination, crow_16_map))
 
+        # Average time
         crow_time_avg = get_average(crow_time_lst)
-        print("evaluate.py :: evaluate :: CROW :: Average time :: %f " % (crow_time_avg))
 
         # 7) CSQ
         # k=2
         csq_2_map = get_mAP(csq_2_relevance_lst)
-        print("evaluate.py :: evaluate :: CSQ :: k=2 :: Mean Average Precision :: %s :: %f" % (
-        category_combination, csq_2_map))
 
         # k=4
         csq_4_map = get_mAP(csq_4_relevance_lst)
-        print("evaluate.py :: evaluate :: CSQ :: k=4 :: Mean Average Precision :: %s :: %f" % (
-        category_combination, csq_4_map))
 
         # k=8
         csq_8_map = get_mAP(csq_8_relevance_lst)
-        print("evaluate.py :: evaluate :: CSQ :: k=8 :: Mean Average Precision :: %s :: %f" % (
-        category_combination, csq_8_map))
 
         # k=16
         csq_16_map = get_mAP(csq_16_relevance_lst)
-        print("evaluate.py :: evaluate :: CSQ :: k=16 :: Mean Average Precision :: %s :: %f" % (
-        category_combination, csq_16_map))
 
+        # Average time
         csq_time_avg = get_average(csq_time_lst)
-        print("evaluate.py :: evaluate :: CSQ :: Average time :: %f " % (csq_time_avg))
 
     # Getting the print string
     output_str = category_combination, qik_2_map, qik_4_map, qik_8_map, qik_16_map, \
@@ -342,7 +301,6 @@ def evaluate(query_lst):
                  crow_2_map, crow_4_map, crow_8_map, crow_16_map, \
                  csq_2_map, csq_4_map, csq_8_map, csq_16_map, \
                  qik_time_avg, dir_time_avg, lire_time_avg, delf_time_avg, dv_time_avg, crow_time_avg, csq_time_avg, query_lst_len
-    print("evaluate.py :: evaluate :: Resp :: ", str(output_str)[1:-1])
 
     # Auditing the results.
     with open(OUTPUT_FILE, 'a+') as f:
@@ -395,7 +353,6 @@ def get_average(results):
     return mean_average
 
 def get_images(categories):
-    print("evaluate.py :: get_images :: Getting images for the category set :: ", categories)
 
     # Return list containing all the images.
     image_list = []
@@ -406,7 +363,6 @@ def get_images(categories):
 
     # Return if there are no images for a particular category combinaion.
     if not imgIds:
-        print("evaluate.py :: get_images :: Images not present for the combination of categories.", categories)
         return None
 
     # Loading the annotations
@@ -424,7 +380,6 @@ def get_images(categories):
 
     # Return if there are no images for a particular category combinaion.
     if not image_list:
-        print("evaluate.py :: get_images :: Images not present for the combination of categories after filtering.", categories)
         return None
 
     return image_list
@@ -454,7 +409,6 @@ def eval(category):
     image_cat_list = get_multicategory_images([image_cat_lst])
 
     if image_cat_list is not None:
-        print("evaluate.py :: eval :: Starting evaluation with :: ", len(image_cat_list)," :: images in the category combination")
         # Starting the evaluation.
         return evaluate(image_cat_list)
 
@@ -464,7 +418,6 @@ def eval(category):
 
 
 def evaluate_cat_comb(category_combination_file):
-    print("Arun :: Entering with : ", category_combination_file)
     # 1) QIK Results List.
     qik_2_mean_average_precision_lst = []
     qik_4_mean_average_precision_lst = []
@@ -520,7 +473,6 @@ def evaluate_cat_comb(category_combination_file):
     # Reading the category combination file.
     f = open(category_combination_file, "r")
     for cat_comb in f:
-        print("evaluate.py :: evaluate_cat_comb :: Evaluating for the category combination :: ", cat_comb)
 
         # Evaluating with the category combination
         qik_2_map, qik_4_map, qik_8_map, qik_16_map, dir_2_map, dir_4_map, dir_8_map, dir_16_map, lire_2_map, lire_4_map, lire_8_map, lire_16_map, delf_2_map, delf_4_map, delf_8_map, delf_16_map, dv_2_map, dv_4_map, dv_8_map, dv_16_map, crow_2_map, crow_4_map, crow_8_map, crow_16_map, csq_2_map, csq_4_map, csq_8_map, csq_16_map, qik_time_avg, dir_time_avg, lire_time_avg, delf_time_avg, dv_time_avg, crow_time_avg, csq_time_avg, query_lst_len = eval(cat_comb.rstrip())
@@ -580,9 +532,6 @@ def evaluate_cat_comb(category_combination_file):
         # Adding the query length.
         query_len_lst.append(query_lst_len)
 
-    # Obtaining the average of all the category combinations.
-    print("evaluate.py :: evaluate_cat_comb :: Computing the averaget of mAP.")
-
     # QIK
     qik_2_average = get_average(qik_2_mean_average_precision_lst)
     qik_4_average = get_average(qik_4_mean_average_precision_lst)
@@ -634,15 +583,6 @@ def evaluate_cat_comb(category_combination_file):
 
     # Summing query lengths.
     sum_query = sum(query_len_lst)
-
-    print("evaluate.py :: evaluate_cat_comb :: average results :: ", [qik_2_average, qik_4_average, qik_8_average, qik_16_average,
-                                                        dir_2_average, dir_4_average, dir_8_average, dir_16_average,
-                                                        lire_2_average, lire_4_average, lire_8_average, lire_16_average,
-                                                        delf_2_average, delf_4_average, delf_8_average, delf_16_average,
-                                                        dv_2_average, dv_4_average, dv_8_average, dv_16_average,
-                                                        crow_2_average, crow_4_average, crow_8_average, crow_16_average,
-                                                        csq_2_average, csq_4_average, csq_8_average, csq_16_average,
-                                                        qik_time_average, dir_time_average, lire_time_average, delf_time_average, dv_time_average, crow_time_average, sum_query])
 
     # Pretty printing the results.
     t = PrettyTable(['System', 'k=2', 'k=4', 'k=8', 'k=16', "Average Time(s)"])
