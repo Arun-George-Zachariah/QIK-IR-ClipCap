@@ -93,6 +93,13 @@ def evaluate(query_lst):
     csq_8_relevance_lst = []
     csq_16_relevance_lst = []
 
+    # 8) QIK Show and Tell Results List.
+    qik_show_and_tell_time_lst = []
+    qik_show_and_tell_2_relevance_lst = []
+    qik_show_and_tell_4_relevance_lst = []
+    qik_show_and_tell_8_relevance_lst = []
+    qik_show_and_tell_16_relevance_lst = []
+
     for query_image in query_lst:
 
         if query_image not in pre_computed_results:
@@ -109,6 +116,10 @@ def evaluate(query_lst):
         # Get QIK results
         qik_results = pre_computed_results[query_image]["qik_results"]
         qik_time_lst.append(pre_computed_results[query_image]["qik_time"])
+
+        # Get QIK Show and Tell results
+        qik_show_and_tell_results = pre_computed_results[query_image]["qik_show_and_tell_results"]
+        qik_show_and_tell_time_lst.append(pre_computed_results[query_image]["qik_show_and_tell_time"])
 
         # Get DIR results
         dir_results = pre_computed_results[query_image]["dir_results"]
@@ -135,13 +146,14 @@ def evaluate(query_lst):
         csq_time_lst.append(pre_computed_results[query_image]["csq_time"])
 
         # Computing the mAP values.
-        if len(qik_results) <= 0:
+        if len(qik_results) <= 0 or len(qik_show_and_tell_results) <=0:
             # Decrementing the count from the list of images.
             query_lst_len -= 1
             continue
 
         # k = 2
         qik_2_relevance_lst.append(get_binary_relevance(qik_results[:2], ground_truth))
+        qik_show_and_tell_2_relevance_lst.append(get_binary_relevance(qik_show_and_tell_results[:2], ground_truth))
         dir_2_relevance_lst.append(get_binary_relevance(dir_results[:2], ground_truth))
         lire_2_relevance_lst.append(get_binary_relevance(lire_results[:2], ground_truth))
         delf_2_relevance_lst.append(get_binary_relevance(delf_results[:2], ground_truth))
@@ -151,6 +163,7 @@ def evaluate(query_lst):
 
         # k=4
         qik_4_relevance_lst.append(get_binary_relevance(qik_results[:4], ground_truth))
+        qik_show_and_tell_4_relevance_lst.append(get_binary_relevance(qik_show_and_tell_results[:4], ground_truth))
         dir_4_relevance_lst.append(get_binary_relevance(dir_results[:4], ground_truth))
         lire_4_relevance_lst.append(get_binary_relevance(lire_results[:4], ground_truth))
         delf_4_relevance_lst.append(get_binary_relevance(delf_results[:4], ground_truth))
@@ -160,6 +173,7 @@ def evaluate(query_lst):
 
         # k=8
         qik_8_relevance_lst.append(get_binary_relevance(qik_results[:8], ground_truth))
+        qik_show_and_tell_8_relevance_lst.append(get_binary_relevance(qik_show_and_tell_results[:8], ground_truth))
         dir_8_relevance_lst.append(get_binary_relevance(dir_results[:8], ground_truth))
         lire_8_relevance_lst.append(get_binary_relevance(lire_results[:8], ground_truth))
         delf_8_relevance_lst.append(get_binary_relevance(delf_results[:8], ground_truth))
@@ -169,6 +183,7 @@ def evaluate(query_lst):
 
         # k=16
         qik_16_relevance_lst.append(get_binary_relevance(qik_results[:16], ground_truth))
+        qik_show_and_tell_16_relevance_lst.append(get_binary_relevance(qik_show_and_tell_results[:16], ground_truth))
         dir_16_relevance_lst.append(get_binary_relevance(dir_results[:16], ground_truth))
         lire_16_relevance_lst.append(get_binary_relevance(lire_results[:16], ground_truth))
         delf_16_relevance_lst.append(get_binary_relevance(delf_results[:16], ground_truth))
@@ -178,7 +193,7 @@ def evaluate(query_lst):
 
     if query_lst_len <= 0:
         print ("evaluate.py :: evaluate ::  Skipping evaluation (since no precomputed images were present) for :: %s" % (category_combination))
-        return None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None
+        return None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None
     else:
         # 1) QIK
         # k=2
@@ -292,21 +307,38 @@ def evaluate(query_lst):
         # Average time
         csq_time_avg = get_average(csq_time_lst)
 
+        # 8) QIK Show and Tell mAP
+        # k=2
+        qik_show_and_tell_2_map = get_mAP(qik_show_and_tell_2_relevance_lst)
+
+        # k=4
+        qik_show_and_tell_4_map = get_mAP(qik_show_and_tell_4_relevance_lst)
+
+        # k=8
+        qik_show_and_tell_8_map = get_mAP(qik_show_and_tell_8_relevance_lst)
+
+        # k=16
+        qik_show_and_tell_16_map = get_mAP(qik_show_and_tell_16_relevance_lst)
+
+        # Average time
+        qik_show_and_tell_time_avg = get_average(qik_show_and_tell_time_lst)
+
     # Getting the print string
     output_str = category_combination, qik_2_map, qik_4_map, qik_8_map, qik_16_map, \
+                 qik_show_and_tell_2_map, qik_show_and_tell_4_map, qik_show_and_tell_8_map, qik_show_and_tell_16_map, \
                  dir_2_map, dir_4_map, dir_8_map, dir_16_map, \
                  lire_2_map, lire_4_map, lire_8_map, lire_16_map, \
                  delf_2_map, delf_4_map, delf_8_map, delf_16_map, \
                  dv_2_map, dv_4_map, dv_8_map, dv_16_map, \
                  crow_2_map, crow_4_map, crow_8_map, crow_16_map, \
                  csq_2_map, csq_4_map, csq_8_map, csq_16_map, \
-                 qik_time_avg, dir_time_avg, lire_time_avg, delf_time_avg, dv_time_avg, crow_time_avg, csq_time_avg, query_lst_len
+                 qik_time_avg, qik_show_and_tell_time_avg, dir_time_avg, lire_time_avg, delf_time_avg, dv_time_avg, crow_time_avg, csq_time_avg, query_lst_len
 
     # Auditing the results.
     with open(OUTPUT_FILE, 'a+') as f:
         f.write(str(output_str)[1:-1] + "\n")
 
-    return qik_2_map, qik_4_map, qik_8_map, qik_16_map, dir_2_map, dir_4_map, dir_8_map, dir_16_map, lire_2_map, lire_4_map, lire_8_map, lire_16_map, delf_2_map, delf_4_map, delf_8_map, delf_16_map, dv_2_map, dv_4_map, dv_8_map, dv_16_map, crow_2_map, crow_4_map, crow_8_map, crow_16_map, csq_2_map, csq_4_map, csq_8_map, csq_16_map, qik_time_avg, dir_time_avg, lire_time_avg, delf_time_avg, dv_time_avg, crow_time_avg, csq_time_avg, query_lst_len
+    return qik_2_map, qik_4_map, qik_8_map, qik_16_map, qik_show_and_tell_2_map, qik_show_and_tell_4_map, qik_show_and_tell_8_map, qik_show_and_tell_16_map, dir_2_map, dir_4_map, dir_8_map, dir_16_map, lire_2_map, lire_4_map, lire_8_map, lire_16_map, delf_2_map, delf_4_map, delf_8_map, delf_16_map, dv_2_map, dv_4_map, dv_8_map, dv_16_map, crow_2_map, crow_4_map, crow_8_map, crow_16_map, csq_2_map, csq_4_map, csq_8_map, csq_16_map, qik_time_avg, qik_show_and_tell_time_avg, dir_time_avg, lire_time_avg, delf_time_avg, dv_time_avg, crow_time_avg, csq_time_avg, query_lst_len
 
 
 # Ref: https://gist.github.com/bwhite/3726239 - Start
@@ -414,7 +446,7 @@ def eval(category):
 
     else:
         print("evaluate.py :: eval :: Cannot perform evaluation for the category combination :: ", category_combination)
-        return None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None
+        return None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None
 
 
 def evaluate_cat_comb(category_combination_file):
@@ -467,6 +499,13 @@ def evaluate_cat_comb(category_combination_file):
     csq_16_mean_average_precision_lst = []
     csq_time_lst = []
 
+    # 7) QIK Show and Tell Results List.
+    qik_show_and_tell_2_mean_average_precision_lst = []
+    qik_show_and_tell_4_mean_average_precision_lst = []
+    qik_show_and_tell_8_mean_average_precision_lst = []
+    qik_show_and_tell_16_mean_average_precision_lst = []
+    qik_show_and_tell_time_lst = []
+
     # Total queries.
     query_len_lst = []
 
@@ -475,7 +514,7 @@ def evaluate_cat_comb(category_combination_file):
     for cat_comb in f:
 
         # Evaluating with the category combination
-        qik_2_map, qik_4_map, qik_8_map, qik_16_map, dir_2_map, dir_4_map, dir_8_map, dir_16_map, lire_2_map, lire_4_map, lire_8_map, lire_16_map, delf_2_map, delf_4_map, delf_8_map, delf_16_map, dv_2_map, dv_4_map, dv_8_map, dv_16_map, crow_2_map, crow_4_map, crow_8_map, crow_16_map, csq_2_map, csq_4_map, csq_8_map, csq_16_map, qik_time_avg, dir_time_avg, lire_time_avg, delf_time_avg, dv_time_avg, crow_time_avg, csq_time_avg, query_lst_len = eval(cat_comb.rstrip())
+        qik_2_map, qik_4_map, qik_8_map, qik_16_map, qik_show_and_tell_2_map, qik_show_and_tell_4_map, qik_show_and_tell_8_map, qik_show_and_tell_16_map, dir_2_map, dir_4_map, dir_8_map, dir_16_map, lire_2_map, lire_4_map, lire_8_map, lire_16_map, delf_2_map, delf_4_map, delf_8_map, delf_16_map, dv_2_map, dv_4_map, dv_8_map, dv_16_map, crow_2_map, crow_4_map, crow_8_map, crow_16_map, csq_2_map, csq_4_map, csq_8_map, csq_16_map, qik_time_avg, qik_show_and_tell_time_avg, dir_time_avg, lire_time_avg, delf_time_avg, dv_time_avg, crow_time_avg, csq_time_avg, query_lst_len = eval(cat_comb.rstrip())
 
         if qik_2_map is None or not query_lst_len:
             continue
@@ -486,6 +525,13 @@ def evaluate_cat_comb(category_combination_file):
         qik_8_mean_average_precision_lst.append(qik_8_map)
         qik_16_mean_average_precision_lst.append(qik_16_map)
         qik_time_lst.append(qik_time_avg)
+
+        # Adding QIK Show and tell results.
+        qik_show_and_tell_2_mean_average_precision_lst.append(qik_show_and_tell_2_map)
+        qik_show_and_tell_4_mean_average_precision_lst.append(qik_show_and_tell_4_map)
+        qik_show_and_tell_8_mean_average_precision_lst.append(qik_show_and_tell_8_map)
+        qik_show_and_tell_16_mean_average_precision_lst.append(qik_show_and_tell_16_map)
+        qik_show_and_tell_time_lst.append(qik_show_and_tell_time_avg)
 
         # Adding DIR results.
         dir_2_mean_average_precision_lst.append(dir_2_map)
@@ -539,6 +585,13 @@ def evaluate_cat_comb(category_combination_file):
     qik_16_average = get_average(qik_16_mean_average_precision_lst)
     qik_time_average = get_average(qik_time_lst)
 
+    # QIK Show and Tell
+    qik_show_and_tell_2_average = get_average(qik_show_and_tell_2_mean_average_precision_lst)
+    qik_show_and_tell_4_average = get_average(qik_show_and_tell_4_mean_average_precision_lst)
+    qik_show_and_tell_8_average = get_average(qik_show_and_tell_8_mean_average_precision_lst)
+    qik_show_and_tell_16_average = get_average(qik_show_and_tell_16_mean_average_precision_lst)
+    qik_show_and_tell_time_average = get_average(qik_show_and_tell_time_lst)
+
     # DIR
     dir_2_average = get_average(dir_2_mean_average_precision_lst)
     dir_4_average = get_average(dir_4_mean_average_precision_lst)
@@ -587,6 +640,7 @@ def evaluate_cat_comb(category_combination_file):
     # Pretty printing the results.
     t = PrettyTable(['System', 'k=2', 'k=4', 'k=8', 'k=16', "Average Time(s)"])
     t.add_row(['QIK', round(qik_2_average, 2), round(qik_4_average, 2), round(qik_8_average, 2), round(qik_16_average, 2), round(qik_time_average, 2)])
+    t.add_row(['QIK (Show &v Tell)', round(qik_show_and_tell_2_average, 2), round(qik_show_and_tell_4_average, 2), round(qik_show_and_tell_8_average, 2), round(qik_show_and_tell_16_average, 2), round(qik_show_and_tell_time_average, 2)])
     t.add_row(['CSQ', round(csq_2_average, 2), round(csq_4_average, 2), round(csq_8_average, 2), round(csq_16_average, 2), round(csq_time_average, 2)])
     t.add_row(['CroW', round(crow_2_average, 2), round(crow_4_average, 2), round(crow_8_average, 2), round(crow_16_average, 2), round(crow_time_average, 2)])
     t.add_row(['FR-CNN', round(dv_2_average, 2), round(dv_4_average, 2), round(dv_8_average, 2), round(dv_16_average, 2), round(dv_time_average, 2)])
